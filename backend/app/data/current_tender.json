@@ -1,0 +1,104 @@
+{
+  "id": "TND-CDDE0F28",
+  "tender_number": "GEM/2024/B/5351424",
+  "title": "Supply, Testing and Commissioning of High-Pressure Motor Operated Valves (MOV) & Hydraulic Actuators Package",
+  "organization": "GAIL (India) Limited (Gandhar LPG Plant / Western Region)",
+  "ministry": "Ministry of Petroleum & Natural Gas",
+  "estimated_value_inr": 285000000.0,
+  "published_date": "2026-09-04T09:00:00+05:30",
+  "submission_deadline": "2026-09-04T15:00:00+05:30",
+  "opening_date": "2026-09-04T16:00:00+05:30",
+  "total_clauses": 4,
+  "mandatory_clauses_count": 2,
+  "high_criticality_count": 2,
+  "clauses": [
+    {
+      "id": "CL-4.1",
+      "clause_no": "Section IV - Cl 4.1",
+      "heading": "Legal Status and Statutory Registration",
+      "raw_text": "The bidder must be a company registered under the Companies Act, 2013 or a registered LLP. The entity must possess an active GSTIN, valid corporate PAN, and must not be debarred by GeM or any Central PSU.",
+      "category": "Statutory & Legal",
+      "criticality": "MANDATORY",
+      "requirements": [
+        {
+          "id": "REQ-ING-01",
+          "clause_reference": "Section IV - Cl 4.1",
+          "category": "Statutory & Legal",
+          "title": "Active GSTIN & Corporate Registration",
+          "description": "Bidder must possess active and un-suspended GSTIN registration matching the legal entity name.",
+          "criticality": "MANDATORY",
+          "validation_method": "SOURCE_CROSS_CHECK",
+          "required_evidence_type": "GST REG-06 Certificate",
+          "applicable_rule": "GeM GTC Cl 3.1 & Rule 144(xi) GFR 2017",
+          "threshold": "Status == ACTIVE"
+        }
+      ]
+    },
+    {
+      "id": "CL-4.2",
+      "clause_no": "Section IV - Cl 4.2",
+      "heading": "Financial Pre-Qualification & Annual Turnover Criteria",
+      "raw_text": "The minimum average annual turnover of the bidder during the last three financial years (FY 2022-23, 2023-24, 2024-25) must be at least \u20b98.55 Crores (30% of tender value per Rule 144(xi) GFR 2017). Bidders must submit audited balance sheets signed by a Chartered Accountant with valid 18-digit UDIN.",
+      "category": "Financial Pre-Qualification",
+      "criticality": "MANDATORY",
+      "requirements": [
+        {
+          "id": "REQ-ING-02",
+          "clause_reference": "Section IV - Cl 4.2",
+          "category": "Financial Pre-Qualification",
+          "title": "Minimum Annual Turnover Threshold",
+          "description": "Average annual turnover must equal or exceed \u20b98.55 Crores.",
+          "criticality": "MANDATORY",
+          "validation_method": "NUMERIC_COMPARISON",
+          "required_evidence_type": "Audited Balance Sheets & CA UDIN Certificate",
+          "applicable_rule": "Rule 144(xi) GFR 2017 & GeM GTC Cl 4.2",
+          "threshold": ">= 8.55 Cr"
+        }
+      ]
+    },
+    {
+      "id": "CL-3.1",
+      "clause_no": "Section III - Cl 3.1",
+      "heading": "Technical Specification & Hydrostatic Pressure Benchmark",
+      "raw_text": "All supplied equipment must strictly conform to API Spec 6A / 6DSS / ASME B16.34 standards with hydrostatic shell test holding duration of continuous 120 minutes with zero observable leakage or pressure drop exceeding 0.02 bar/min.",
+      "category": "Technical Specification",
+      "criticality": "HIGH",
+      "requirements": [
+        {
+          "id": "REQ-ING-03",
+          "clause_reference": "Section III - Cl 3.1",
+          "category": "Technical Specification",
+          "title": "Hydrostatic Pressure Test Compliance",
+          "description": "Hydrostatic shell test with zero leakage under rated pressure for 120 minutes.",
+          "criticality": "HIGH",
+          "validation_method": "DETERMINISTIC",
+          "required_evidence_type": "OEM Quality Inspection & Factory Hydrostatic Test Certificate",
+          "applicable_rule": "API Spec 6A / 6DSS Cl 7.4",
+          "threshold": "100% Zero Leakage"
+        }
+      ]
+    },
+    {
+      "id": "CL-3.2",
+      "clause_no": "Section III - Cl 3.2",
+      "heading": "Make in India (PPO-MII) Local Content Preference",
+      "raw_text": "Purchase preference shall be granted to Class-I Local Suppliers (local content >= 50%) under DPIIT Order P-45021/2/2017-PP (BE-II). Suppliers with local content >= 20% but < 50% are categorized as Class-II Local Suppliers.",
+      "category": "Statutory & Legal",
+      "criticality": "HIGH",
+      "requirements": [
+        {
+          "id": "REQ-ING-04",
+          "clause_reference": "Section III - Cl 3.2",
+          "category": "Statutory & Legal",
+          "title": "DPIIT Class-I Local Content Verification",
+          "description": "Audited Bill of Materials demonstrating domestic value addition >= 50%.",
+          "criticality": "HIGH",
+          "validation_method": "NUMERIC_COMPARISON",
+          "required_evidence_type": "Statutory Auditor Local Content Certificate & Customs Deconstruction",
+          "applicable_rule": "DPIIT Order P-45021/2/2017-PP",
+          "threshold": ">= 50% Local Content"
+        }
+      ]
+    }
+  ]
+}

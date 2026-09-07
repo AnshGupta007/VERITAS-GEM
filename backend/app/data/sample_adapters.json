@@ -1,0 +1,57 @@
+[
+  {
+    "adapter_id": "ADAPT-GSTN-01",
+    "name": "GSTN Registration & Return Filing Gateway",
+    "target_authority": "Goods and Services Tax Network (GSTN)",
+    "provider_type": "MOCK",
+    "status": "ACTIVE",
+    "latency_ms": 142,
+    "total_queries_served": 1420,
+    "sample_identifier": "27AAACB1234A1Z5",
+    "description": "Validates active registration status, return compliance (GSTR-3B), and legal entity trade name match against authoritative GST databases."
+  },
+  {
+    "adapter_id": "ADAPT-MCA21-02",
+    "name": "MCA21 Corporate Master Data Interface",
+    "target_authority": "Ministry of Corporate Affairs (MCA)",
+    "provider_type": "MOCK",
+    "status": "ACTIVE",
+    "latency_ms": 188,
+    "total_queries_served": 984,
+    "sample_identifier": "U29100MH2014PLC258901",
+    "description": "Verifies Corporate Identification Number (CIN), authorized/paid-up share capital, director appointments, charges, and company status (Active/Under Liquidation)."
+  },
+  {
+    "adapter_id": "ADAPT-DIGILOCKER-03",
+    "name": "DigiLocker Partner Document Verification Service",
+    "target_authority": "National e-Governance Division (NeGD)",
+    "provider_type": "SIMULATED",
+    "status": "ACTIVE",
+    "latency_ms": 235,
+    "total_queries_served": 756,
+    "sample_identifier": "URI: in.gov.bis.cml.8472910",
+    "description": "Verifies cryptographic document signatures, issuing authority public keys, and tampering integrity for digital government certificates."
+  },
+  {
+    "adapter_id": "ADAPT-UDYAM-04",
+    "name": "Udyam MSME Registry Adapter",
+    "target_authority": "Ministry of Micro, Small and Medium Enterprises",
+    "provider_type": "MOCK",
+    "status": "ACTIVE",
+    "latency_ms": 115,
+    "total_queries_served": 612,
+    "sample_identifier": "UDYAM-MH-12-0049218",
+    "description": "Corroborates enterprise classification (Micro, Small, Medium), investment in plant & machinery, turnover bracket, and NIC industrial codes."
+  },
+  {
+    "adapter_id": "ADAPT-DEBARMENT-05",
+    "name": "GeM Central Debarment & CVC Blacklist Repository",
+    "target_authority": "GeM / Central Vigilance Commission / DoE",
+    "provider_type": "CURATED",
+    "status": "ACTIVE",
+    "latency_ms": 94,
+    "total_queries_served": 3280,
+    "sample_identifier": "PAN: AAACB1234A",
+    "description": "Screens legal entities, PAN, and promoters against national debarred bidder registries across GeM, CVC, CPWD, and public sector undertakings."
+  }
+]

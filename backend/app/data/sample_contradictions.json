@@ -1,0 +1,158 @@
+[
+  {
+    "id": "CONTRA-001",
+    "bidder_id": "BID-ABC-001",
+    "dimension": "Financial Turnover",
+    "title": "Material Turnover Inconsistency Between Financials and Vendor Declaration",
+    "severity": "HIGH",
+    "gap_summary": "₹4,20,00,000 Numeric Discrepancy (₹12.40 Cr in Financial Statements vs ₹8.20 Cr in Vendor Bid Declaration)",
+    "finding_id": "FIND-ABC-01",
+    "doc_a": {
+      "document_id": "DOC-ABC-04",
+      "document_name": "Audited_Financial_Statement_FY24_25.pdf",
+      "page_number": 17,
+      "bounding_box": {
+        "x": 120.0,
+        "y": 340.0,
+        "width": 380.0,
+        "height": 45.0
+      },
+      "extracted_text": "Schedule 18 — Revenue from Operations: Total Turnover for Year Ended 31st March 2025: INR 12,40,00,000 (Twelve Crore Forty Lakhs Only)",
+      "field_label": "Audited Balance Sheet (FY 2024-25)",
+      "highlight_color": "#10b981"
+    },
+    "doc_b": {
+      "document_id": "DOC-ABC-09",
+      "document_name": "Schedule_IV_Vendor_Turnover_Declaration.pdf",
+      "page_number": 3,
+      "bounding_box": {
+        "x": 110.0,
+        "y": 210.0,
+        "width": 410.0,
+        "height": 50.0
+      },
+      "extracted_text": "Item 4(b) — We hereby confirm our certified annual turnover for FY 2024-25 as INR 8,20,00,000 (Eight Crore Twenty Lakhs Only) under GeM guidelines.",
+      "field_label": "Vendor Pre-Qualification Declaration",
+      "highlight_color": "#ef4444"
+    },
+    "analysis_text": "The bidder's financial statement presents an audited figure of ₹12.40 Cr, easily crossing the tender threshold of ₹10 Cr. However, in the sworn Schedule IV pre-qualification declaration signed by the Managing Director, the declared FY25 turnover is only ₹8.20 Cr. If ₹8.20 Cr is the true turnover, the bidder is legally ineligible under Clause 4.2.",
+    "impact": "CRITICAL: Potential disqualification under Clause 4.2. Inconsistent disclosure could indicate altered financial reports or unverified revenue figures."
+  },
+  {
+    "id": "CONTRA-002",
+    "bidder_id": "BID-ABC-001",
+    "dimension": "Legal Entity Identity",
+    "title": "Corporate Constitution Token Mismatch (Limited vs Private Limited)",
+    "severity": "HIGH",
+    "gap_summary": "'Limited' (Public Ltd) in GST vs 'Private Limited' in PAN & Technical Undertaking",
+    "finding_id": "FIND-ABC-02",
+    "doc_a": {
+      "document_id": "DOC-ABC-01",
+      "document_name": "GST_Registration_Certificate_REG06.pdf",
+      "page_number": 1,
+      "bounding_box": {
+        "x": 140.0,
+        "y": 180.0,
+        "width": 320.0,
+        "height": 35.0
+      },
+      "extracted_text": "Legal Name: ABC Industries Limited | Constitution: Public Limited Company",
+      "field_label": "GST REG-06 Certificate",
+      "highlight_color": "#f59e0b"
+    },
+    "doc_b": {
+      "document_id": "DOC-ABC-02",
+      "document_name": "PAN_Card_and_Undertaking.pdf",
+      "page_number": 1,
+      "bounding_box": {
+        "x": 105.0,
+        "y": 160.0,
+        "width": 310.0,
+        "height": 35.0
+      },
+      "extracted_text": "PAN: AAACB1234A | Name: ABC Industries Pvt Ltd | Entity: Private Company",
+      "field_label": "PAN Card & Corporate Undertaking",
+      "highlight_color": "#ef4444"
+    },
+    "analysis_text": "Entity resolution engine identified a material legal discrepancy. If the entity underwent a conversion from Private Limited to Public Limited (or vice versa), fresh PAN and GST records must be harmonized and accompanied by the ROC Certificate of Incorporation Consequent upon Conversion.",
+    "impact": "HIGH: Legal risk in contract execution; invoice processing and GST input tax credit (ITC) pass-through risk."
+  },
+  {
+    "id": "CONTRA-003",
+    "bidder_id": "BID-ABC-001",
+    "dimension": "Employee Headcount",
+    "title": "Employee Headcount Discrepancy (42 in Udyam vs 67 in EPFO ECR)",
+    "severity": "MEDIUM",
+    "gap_summary": "25 Employee Variance (42 employees on MSME portal vs 67 on EPFO payroll returns)",
+    "finding_id": "FIND-ABC-05",
+    "doc_a": {
+      "document_id": "DOC-ABC-05",
+      "document_name": "Udyam_Registration_Certificate.pdf",
+      "page_number": 2,
+      "bounding_box": {
+        "x": 100.0,
+        "y": 250.0,
+        "width": 280.0,
+        "height": 35.0
+      },
+      "extracted_text": "Number of Persons Employed: Male: 36, Female: 6, Total: 42",
+      "field_label": "Udyam MSME Declaration",
+      "highlight_color": "#3b82f6"
+    },
+    "doc_b": {
+      "document_id": "DOC-ABC-06",
+      "document_name": "EPFO_ECR_Receipt_Aug2026.pdf",
+      "page_number": 1,
+      "bounding_box": {
+        "x": 110.0,
+        "y": 190.0,
+        "width": 300.0,
+        "height": 35.0
+      },
+      "extracted_text": "Total Contributing Members (Employees) for Month of August 2026: 67",
+      "field_label": "Statutory EPFO ECR Filing",
+      "highlight_color": "#f59e0b"
+    },
+    "analysis_text": "Udyam certificate filed with the Ministry of MSME lists 42 personnel, whereas the mandatory EPFO ECR receipt for the same operating month demonstrates 67 active workers. Could reflect contract labour inclusion or failure to update Udyam classification parameters.",
+    "impact": "MEDIUM: May affect MSME priority benefit eligibility or labor law compliance certifications."
+  },
+  {
+    "id": "CONTRA-004",
+    "bidder_id": "BID-XYZ-002",
+    "dimension": "Make in India Local Content",
+    "title": "Local Content Inconsistency: 62.4% Declared vs 48.0% Itemized Bill of Materials",
+    "severity": "MEDIUM",
+    "gap_summary": "14.4% Local Value Gap (Class-I status claimed at 62.4%, but BoM calculates only 48.0%)",
+    "finding_id": "FIND-XYZ-01",
+    "doc_a": {
+      "document_id": "DOC-XYZ-03",
+      "document_name": "MII_Local_Content_Auditor_Certificate.pdf",
+      "page_number": 1,
+      "bounding_box": {
+        "x": 100.0,
+        "y": 240.0,
+        "width": 380.0,
+        "height": 40.0
+      },
+      "extracted_text": "We certify that the Local Value Addition in the offered valves is 62.40% meeting Class-I Local Supplier norms.",
+      "field_label": "Statutory Auditor MII Certificate",
+      "highlight_color": "#10b981"
+    },
+    "doc_b": {
+      "document_id": "DOC-XYZ-06",
+      "document_name": "Bill_of_Materials_Annexure_III.pdf",
+      "page_number": 4,
+      "bounding_box": {
+        "x": 110.0,
+        "y": 320.0,
+        "width": 370.0,
+        "height": 45.0
+      },
+      "extracted_text": "Subsea Actuator Assembly (Imported - Germany): 52.0% | Domestic Forgings & Trim: 48.0%",
+      "field_label": "Detailed Technical BoM Annexure",
+      "highlight_color": "#ef4444"
+    },
+    "analysis_text": "Under DPIIT Make in India rules, Class-I supplier preference requires >= 50% domestic content. The technical BoM shows 52% imported content (actuators), capping domestic content at 48%, whereas the auditor certificate erroneously included overseas freight and assembly margin.",
+    "impact": "MEDIUM: Reclassification from Class-I Local Supplier to Class-II Local Supplier, losing 20% purchase preference margin."
+  }
+]

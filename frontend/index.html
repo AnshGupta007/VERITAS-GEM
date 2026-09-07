@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERITAS-GEM | AI Procurement Compliance & Risk Intelligence</title>
+  <meta name="description" content="AI-Powered Integrated Bid Compliance Verification Platform for GeM Procurement (SIH26100 - Ministry of Petroleum & Natural Gas)." />
+  <meta name="theme-color" content="#131314" />
+
+  <!-- Tailwind CSS with Stitch Theme Configuration -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed": "#6ffbbe",
+            "error-container": "#93000a",
+            "inverse-surface": "#e5e2e3",
+            "surface-container": "#201f20",
+            "surface-container-highest": "#353436",
+            "tertiary": "#58e7aa",
+            "surface-dim": "#131314",
+            "on-tertiary-fixed": "#002113",
+            "on-surface-variant": "#d0c5af",
+            "on-secondary-container": "#006a70",
+            "secondary-fixed-dim": "#00dbe7",
+            "inverse-primary": "#735c00",
+            "primary-fixed-dim": "#e9c349",
+            "tertiary-container": "#33ca90",
+            "primary-fixed": "#ffe088",
+            "outline": "#99907c",
+            "on-primary": "#3c2f00",
+            "secondary": "#ddfcff",
+            "surface-container-lowest": "#0e0e0f",
+            "on-primary-fixed": "#241a00",
+            "error": "#ffb4ab",
+            "on-tertiary": "#003824",
+            "on-surface": "#e5e2e3",
+            "surface-variant": "#353436",
+            "on-secondary": "#00363a",
+            "primary-container": "#d4af37",
+            "on-secondary-fixed-variant": "#004f54",
+            "on-background": "#e5e2e3",
+            "surface-tint": "#e9c349",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-error-container": "#ffdad6",
+            "surface-container-high": "#2a2a2b",
+            "inverse-on-surface": "#313031",
+            "on-primary-container": "#554300",
+            "on-secondary-fixed": "#002022",
+            "secondary-container": "#00f1fe",
+            "on-tertiary-container": "#005035",
+            "on-primary-fixed-variant": "#574500",
+            "secondary-fixed": "#74f5ff",
+            "background": "#131314",
+            "surface": "#131314",
+            "surface-bright": "#3a393a",
+            "on-tertiary-fixed-variant": "#005236",
+            "surface-container-low": "#1c1b1c",
+            "on-error": "#690005",
+            "primary": "#f2ca50",
+            "outline-variant": "#4d4635"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          spacing: {
+            "margin-mobile": "16px",
+            "gutter": "16px",
+            "margin-desktop": "32px",
+            "unit": "4px",
+            "container-max": "1440px"
+          },
+          fontFamily: {
+            "body-md": ["Inter", "sans-serif"],
+            "headline-md": ["Geist", "sans-serif"],
+            "headline-sm": ["Geist", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "label-mono": ["JetBrains Mono", "monospace"],
+            "display-lg": ["Geist", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"]
+          },
+          fontSize: {
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts: Geist, Inter, JetBrains Mono & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Stitch Core & Supplementary Styles -->
+  <link rel="stylesheet" href="/static/css/design-system.css" onerror="this.onerror=null;this.href='/css/design-system.css';" />
+  <link rel="stylesheet" href="/static/css/components.css" onerror="this.onerror=null;this.href='/css/components.css';" />
+  <link rel="stylesheet" href="/static/css/layouts.css" onerror="this.onerror=null;this.href='/css/layouts.css';" />
+  <link rel="stylesheet" href="/static/css/animations.css" onerror="this.onerror=null;this.href='/css/animations.css';" />
+
+  <style>
+    .ghost-border { border: 1px solid rgba(255, 255, 255, 0.1); }
+    .glass-panel { background: rgba(22, 22, 24, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .glow-cyan { box-shadow: 0 0 8px rgba(0, 241, 254, 0.3); border-color: rgba(0, 241, 254, 0.3); }
+    .glow-gold { box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); border-color: rgba(212, 175, 55, 0.3); }
+    .glow-red { box-shadow: 0 0 8px rgba(255, 180, 171, 0.3); border-color: rgba(255, 180, 171, 0.3); }
+    .glow-emerald { box-shadow: 0 0 8px rgba(16, 185, 129, 0.3); border-color: rgba(16, 185, 129, 0.3); }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    
+    .scanlines::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+      z-index: 20;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+      opacity: 0.2;
+    }
+    
+    .progress-bar-bg { background-color: rgba(255, 255, 255, 0.1); }
+    
+    /* Input and form controls reset for dark theme */
+    input.form-input, .form-input, .form-textarea {
+      background-color: #111420 !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 6px !important;
+    }
+    input.form-input:focus, .form-input:focus {
+      border-color: #00f1fe !important;
+      box-shadow: 0 0 10px rgba(0, 241, 254, 0.25) !important;
+    }
+
+    /* Resilient Responsive Grid Fallbacks */
+    .kpi-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 1rem !important;
+      margin-bottom: 1.5rem !important;
+    }
+    @media (max-width: 1024px) {
+      .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    }
+    @media (max-width: 640px) {
+      .kpi-grid { grid-template-columns: 1fr !important; }
+    }
+
+    .bidders-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 1.25rem !important;
+      margin-bottom: 2rem !important;
+    }
+    @media (max-width: 1024px) {
+      .bidders-grid { grid-template-columns: 1fr !important; }
+    }
+
+    .evidence-three-col {
+      display: grid !important;
+      grid-template-columns: minmax(280px, 320px) minmax(320px, 380px) minmax(320px, 1fr) !important;
+      gap: 1rem !important;
+      align-items: stretch !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      overflow-x: hidden !important;
+    }
+    @media (max-width: 1280px) {
+      .evidence-three-col { grid-template-columns: 1fr !important; }
+    }
+
+    /* Modal Backdrop Priority */
+    .modal-backdrop {
+      z-index: 9999 !important;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen overflow-hidden flex flex-col antialiased relative scanlines">
+
+  <!-- ========================================================================= -->
+  <!-- AUTHENTIC STITCH TOP NAVBAR (Header)                                     -->
+  <!-- ========================================================================= -->
+  <header class="bg-surface dark:bg-surface border-b border-white/10 backdrop-blur-md bg-surface/80 flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50">
+    <div class="flex items-center gap-4">
+      <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary tracking-tight">VERITAS-GEM</h1>
+        </div>
+        <span class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">Integrated Procurement Compliance &amp; Risk Intelligence Co-Pilot</span>
+      </div>
+      <div class="h-8 w-px bg-white/10 mx-4 hidden sm:block"></div>
+      <div class="hidden sm:flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded ghost-border tabular-nums font-label-mono text-label-mono">
+        <span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="description">description</span>
+        <span id="stitch-header-tender" class="text-on-surface font-semibold">GEM/2026/B/8849201 | Value: ₹48.50 Cr</span>
+        <span class="text-on-surface-variant text-xs truncate max-w-xs ml-2">(High-Pressure Subsea Control Valves)</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-3">
+        <!-- Ingest Custom Tender Button -->
+        <button id="btn-header-upload" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-secondary-container hover:bg-surface-container-highest/50 transition-colors rounded ghost-border font-label-mono text-label-mono text-xs cursor-pointer">
+          <span class="material-symbols-outlined text-sm">upload_file</span>
+          <span>Ingest Tender</span>
+        </button>
+
+        <!-- Policy Sandbox Button -->
+        <button id="btn-header-policy" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-primary-fixed hover:bg-surface-container-highest/50 transition-colors rounded ghost-border font-label-mono text-label-mono text-xs cursor-pointer">
+          <span class="material-symbols-outlined text-sm text-primary">tune</span>
+          <span>Policy Sandbox</span>
+        </button>
+
+        <!-- Judge Demo Mode Button -->
+        <button id="btn-pitch-tour" class="flex items-center gap-2 px-4 py-2 bg-secondary-container text-on-secondary-container rounded font-label-mono text-label-mono font-bold hover:brightness-110 transition-all glow-cyan text-xs cursor-pointer">
+          <span class="material-symbols-outlined text-sm">bolt</span>
+          <span>Judge Demo Mode</span>
+        </button>
+
+        <!-- Reset Demo Pipeline Button -->
+        <button id="btn-reset-demo" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-primary-fixed hover:bg-surface-container-highest/50 transition-colors rounded ghost-border font-label-mono text-label-mono text-xs cursor-pointer">
+          <span class="material-symbols-outlined text-sm">restart_alt</span>
+          <span>Reset Pipeline</span>
+        </button>
+      </div>
+
+      <div class="h-8 w-px bg-white/10 mx-2 hidden md:block"></div>
+
+      <!-- Government Officer Identity Avatar -->
+      <div class="hidden md:flex items-center gap-3">
+        <div class="text-right">
+          <div class="font-label-mono text-label-mono text-on-surface text-xs font-semibold">Sh. Rajesh Sharma</div>
+          <div class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">Chairperson, TEC · MoPNG</div>
+        </div>
+        <img class="w-8 h-8 rounded object-cover ghost-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS5e5Y3s90h4lmWDUm9USG5mUu9CTo8l-JWezFKJCN5YNC_o_3qbQNm2N4HTzGCMyriJC-I0WPCJjr-uxEmDwE7mclc2thW9ruXwSXGqrK_6uuenegS-EJ5gtpas4UxEX_KNP4zOKQmUyD7oSKWHTiktHQ3lEYRRVqVBrw_ZIgtynZoTxcDrBY5q3WI7GZK5E-jbXQCIu3UhCFJmXY5k491tICFcZdv1893FyeOySoyBOHQ8hEqztpSI5RWUiAqZPU1-S5gxX79EQ" alt="Chairperson Avatar" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- APP SHELL BODY (Sidebar + Main Content Canvas)                            -->
+  <!-- ========================================================================= -->
+  <div class="flex flex-1 overflow-hidden relative">
+
+    <!-- AUTHENTIC STITCH DOCKED SIDENAVBAR -->
+    <nav id="stitch-sidebar" class="bg-surface-container border-r border-white/10 docked left-0 h-full w-64 hidden lg:flex flex-col fixed left-0 top-16 py-4 z-40">
+      <div class="px-4 pb-3 border-b border-white/10 flex items-center justify-between">
+        <span class="font-label-mono text-[11px] text-on-surface-variant uppercase tracking-wider">Navigation Bridge</span>
+        <span class="badge badge-real text-[9px] px-1.5 py-0.5">Stitch AI</span>
+      </div>
+
+      <div class="flex-1 overflow-y-auto mt-3 space-y-1" id="stitch-nav-links">
+        <!-- 1. Command Center HUD (Flagship View) -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="command-center">
+          <span class="material-symbols-outlined text-sm">dashboard</span>
+          <span>Command Center HUD</span>
+        </a>
+
+        <!-- 2. Commercial L1 & Financial Discovery (NEW) -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="commercial">
+          <span class="material-symbols-outlined text-sm text-secondary-container">payments</span>
+          <span>Commercial &amp; L1 Award</span>
+        </a>
+
+        <!-- 3. Cartelization & Collusion Radar -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="cartelization">
+          <span class="material-symbols-outlined text-sm text-error">hub</span>
+          <span>Cartelization Radar</span>
+        </a>
+
+        <!-- 4. Multi-Bidder Comparison Leaderboard -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="bidders">
+          <span class="material-symbols-outlined text-sm">leaderboard</span>
+          <span>Bidder Scorecards</span>
+        </a>
+
+
+        <!-- 4. Tender Requirements Intelligence -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="overview">
+          <span class="material-symbols-outlined text-sm">description</span>
+          <span>Tender Intelligence</span>
+        </a>
+
+        <!-- 5. Cross-Document Contradiction Radar -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="contradictions">
+          <span class="material-symbols-outlined text-sm">difference</span>
+          <span>Contradiction Radar</span>
+        </a>
+
+        <!-- 6. Compliance Time Machine -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="timemachine">
+          <span class="material-symbols-outlined text-sm">schedule</span>
+          <span>Compliance Time Machine</span>
+        </a>
+
+        <!-- 7. Grounded 3-Column Evidence Inspector -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="evidence">
+          <span class="material-symbols-outlined text-sm">fact_check</span>
+          <span>Grounded Evidence</span>
+        </a>
+
+        <!-- 8. Committee Consensus Quorum -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="committee">
+          <span class="material-symbols-outlined text-sm">how_to_reg</span>
+          <span>Committee Quorum</span>
+        </a>
+
+        <!-- 9. Cryptographic Immutable Audit Trail -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="audit">
+          <span class="material-symbols-outlined text-sm">fingerprint</span>
+          <span>Audit Trail Ledger</span>
+        </a>
+
+        <!-- 10. Source Verification Adapters -->
+        <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="adapters">
+          <span class="material-symbols-outlined text-sm">account_tree</span>
+          <span>Verification Adapters</span>
+        </a>
+      </div>
+
+      <!-- Quick Hash Audit Button -->
+      <div class="mt-auto px-4 mb-2">
+        <button id="btn-sidebar-audit-quick" class="w-full flex items-center justify-center gap-2 border border-primary text-primary bg-transparent py-2 rounded font-label-mono text-xs hover:bg-primary/10 transition-colors glow-gold cursor-pointer">
+          <span class="material-symbols-outlined text-sm">lock</span>
+          <span>Audit Hash Ledger</span>
+        </button>
+      </div>
+
+      <!-- Engine Status Pill -->
+      <div class="border-t border-white/10 pt-3 px-4 flex items-center justify-between text-[11px] font-label-mono text-on-surface-variant">
+        <div class="flex items-center gap-1.5">
+          <span class="status-dot status-dot-active"></span>
+          <span>FastAPI Engine</span>
+        </div>
+        <span class="text-tertiary">ONLINE v0.9.3</span>
+      </div>
+    </nav>
+
+    <!-- AUTHENTIC STITCH MAIN CANVAS -->
+    <main class="flex-1 lg:ml-64 p-margin-desktop overflow-y-auto h-[calc(100vh-64px)] scroll-smooth bg-surface relative z-10">
+      <div id="view-content-mount" class="max-w-[1440px] mx-auto pb-36">
+        <!-- Initial Shimmer Card -->
+        <div class="card shimmer-bg" style="height: 480px; display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div class="logo-symbol" style="margin: 0 auto 1rem auto; width: 48px; height: 48px;">V</div>
+            <div style="font-size: 1.15rem; font-weight: 700; color: #fff;">Connecting to VERITAS-GEM Engine...</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.35rem;">Loading MoPNG Subsea Control Valves Compliance Dossier</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- PERSISTENT FLOATING 'ASK VERITAS' COPILOT TRIGGER -->
+  <button id="btn-floating-copilot" class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-full shadow-2xl font-label-mono text-xs font-bold hover:scale-105 transition-all glow-cyan cursor-pointer">
+    <span class="material-symbols-outlined text-base">smart_toy</span>
+    <span>Ask Veritas Copilot</span>
+  </button>
+
+  <!-- DYNAMIC TOAST CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- APPLICATION BOOTSTRAP -->
+  <script type="module" src="/static/js/app.js" onerror="this.onerror=null;import('/js/app.js');"></script>
+</body>
+</html>

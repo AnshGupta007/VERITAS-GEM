@@ -1,0 +1,44 @@
+[
+  {
+    "event_id": "AUD-88401",
+    "timestamp": "2026-09-02T15:00:12+05:30",
+    "event_type": "TENDER_INGESTED",
+    "officer_id": "SYSTEM",
+    "finding_id": null,
+    "bidder_id": null,
+    "action_taken": "TENDER_ANALYSIS_COMPLETED",
+    "reason": "47 clauses parsed; 29 compliance requirements extracted using rule version v1.2-GeM-MoPNG",
+    "model_version": "veritas-v0.9.3",
+    "rule_version": "v1.2-GeM-MoPNG",
+    "evidence_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "integrity_signature": "sig-sha256-ba978a6cbe9ce49a5fad60679cc241bc"
+  },
+  {
+    "event_id": "AUD-88402",
+    "timestamp": "2026-09-02T15:20:00+05:30",
+    "event_type": "FINDING_ACCEPTED",
+    "officer_id": "OFF-8821",
+    "finding_id": "FIND-PQR-01",
+    "bidder_id": "BID-PQR-003",
+    "action_taken": "ACCEPT_FINDING",
+    "reason": "MCA21 financial records cross-checked and verified against CA UDIN registry.",
+    "model_version": "veritas-v0.9.3",
+    "rule_version": "v1.2-GeM-MoPNG",
+    "evidence_hash": "7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069",
+    "integrity_signature": "sig-sha256-19ed65258e6254171cf8377a6c3048a1"
+  },
+  {
+    "event_id": "AUD-88403",
+    "timestamp": "2026-09-02T16:30:00+05:30",
+    "event_type": "FINDING_ACCEPTED",
+    "officer_id": "OFF-8821",
+    "finding_id": "FIND-ABC-06",
+    "bidder_id": "BID-ABC-001",
+    "action_taken": "ACCEPT_FINDING",
+    "reason": "Verified against GAIL tender reference registry (PO GAIL/2023/VLV/109 confirmed authentic).",
+    "model_version": "veritas-v0.9.3",
+    "rule_version": "v1.2-GeM-MoPNG",
+    "evidence_hash": "b2f5ff47436671b6e533d8dc3614845d80ceee88019b354ab97a2075fb45e43b",
+    "integrity_signature": "sig-sha256-60c3fbaaff1b6674674ddb3c7dcfdaa7"
+  }
+]

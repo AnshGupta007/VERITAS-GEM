@@ -1,0 +1,206 @@
+{
+  "id": "TND-MoPNG-2026-0428",
+  "tender_number": "GEM/2026/B/8849201",
+  "title": "Supply, Testing and Commissioning of High-Pressure Subsea Control Valves & Flow Control Skids for Offshore Deepwater Operations",
+  "organization": "Oil and Natural Gas Corporation (ONGC) / MoPNG",
+  "ministry": "Ministry of Petroleum & Natural Gas",
+  "estimated_value_inr": 485000000.0,
+  "published_date": "2026-08-01T10:00:00+05:30",
+  "submission_deadline": "2026-09-15T15:00:00+05:30",
+  "opening_date": "2026-09-15T16:00:00+05:30",
+  "total_clauses": 47,
+  "mandatory_clauses_count": 6,
+  "high_criticality_count": 12,
+  "clauses": [
+    {
+      "id": "CL-4.1",
+      "clause_no": "Section IV - Cl 4.1",
+      "heading": "Legal Status and Entity Eligibility",
+      "raw_text": "The bidder must be a company registered under the Companies Act, 2013 or a registered Partnership / LLP. The entity must possess a valid PAN, active GSTIN registration in the operating state, and must not be debarred or blacklisted by GeM, MoPNG, or any PSU on the date of bid submission.",
+      "category": "Statutory & Legal",
+      "criticality": "MANDATORY",
+      "requirements": [
+        {
+          "id": "REQ-01",
+          "clause_reference": "Section IV - Cl 4.1",
+          "category": "Statutory & Legal",
+          "title": "Active GSTIN Registration",
+          "description": "Bidder must possess active and un-suspended GSTIN registration matching the legal entity name.",
+          "criticality": "MANDATORY",
+          "validation_method": "SOURCE_CROSS_CHECK",
+          "required_evidence_type": "GST REG-06 Certificate",
+          "applicable_rule": "GeM GTC Cl 3.1 & Rule 144(xi) GFR 2017",
+          "threshold": "Status == ACTIVE"
+        },
+        {
+          "id": "REQ-02",
+          "clause_reference": "Section IV - Cl 4.1",
+          "category": "Statutory & Legal",
+          "title": "Non-Debarment Declaration",
+          "description": "Bidder must not be blacklisted or under debarment proceedings by GeM or central ministries.",
+          "criticality": "MANDATORY",
+          "validation_method": "SOURCE_CROSS_CHECK",
+          "required_evidence_type": "Affidavit / Non-Debarment Undertaking",
+          "applicable_rule": "DoE OM No. F.1/20/2018-PPD",
+          "threshold": "Debarred == FALSE"
+        }
+      ]
+    },
+    {
+      "id": "CL-4.2",
+      "clause_no": "Section IV - Cl 4.2",
+      "heading": "Financial Standing — Minimum Average Annual Turnover",
+      "raw_text": "The minimum average annual financial turnover of the bidder during the last three financial years (FY 2022-23, FY 2023-24, FY 2024-25) must not be less than INR 10,00,00,000 (Ten Crore Rupees). Audited balance sheets and profit & loss statements certified by a Chartered Accountant with valid UDIN must be submitted.",
+      "category": "Financial",
+      "criticality": "MANDATORY",
+      "requirements": [
+        {
+          "id": "REQ-03",
+          "clause_reference": "Section IV - Cl 4.2",
+          "category": "Financial",
+          "title": "Minimum Annual Turnover Threshold",
+          "description": "Audited turnover must equal or exceed INR 10 Crore across certified FY submissions.",
+          "criticality": "MANDATORY",
+          "validation_method": "NUMERIC_COMPARISON",
+          "required_evidence_type": "Audited Balance Sheets with UDIN & CA Certificate",
+          "applicable_rule": "GeM STC Clause 7.2 (Financial Pre-Qualification)",
+          "threshold": ">= 10,00,00,000 INR"
+        }
+      ]
+    },
+    {
+      "id": "CL-4.3",
+      "clause_no": "Section IV - Cl 4.3",
+      "heading": "Working Capital and Bank Solvency",
+      "raw_text": "The bidder must submit a Bank Solvency Certificate from a Scheduled Commercial Bank for an amount not less than INR 3,00,00,000 (Three Crore Rupees), issued not earlier than six months prior to the date of tender issuance.",
+      "category": "Financial",
+      "criticality": "HIGH",
+      "requirements": [
+        {
+          "id": "REQ-04",
+          "clause_reference": "Section IV - Cl 4.3",
+          "category": "Financial",
+          "title": "Bank Solvency Certificate",
+          "description": "Solvency certificate >= INR 3 Crore from scheduled bank issued within 6 months.",
+          "criticality": "HIGH",
+          "validation_method": "HYBRID",
+          "required_evidence_type": "Bank Solvency Certificate",
+          "applicable_rule": "MoPNG Procurement Manual 2024 Sec 8.4",
+          "threshold": ">= 3,00,00,000 INR; Max Age 180 Days"
+        }
+      ]
+    },
+    {
+      "id": "CL-5.1",
+      "clause_no": "Section V - Cl 5.1",
+      "heading": "Technical Capability & Prior Supply Experience",
+      "raw_text": "The bidder or its designated OEM must have successfully supplied at least 50 units of API 6D or API 6A rated high-pressure valves (Rating 10,000 PSI or above) to PSUs, Central Govt Departments, or offshore upstream operators in the preceding 5 financial years. Satisfactory completion certificates must be attached.",
+      "category": "Technical",
+      "criticality": "HIGH",
+      "requirements": [
+        {
+          "id": "REQ-05",
+          "clause_reference": "Section V - Cl 5.1",
+          "category": "Technical",
+          "title": "Past Experience API 6D / 6A Valves",
+          "description": "Supply proof of at least 50 high-pressure valve units with performance certificates.",
+          "criticality": "HIGH",
+          "validation_method": "NUMERIC_COMPARISON",
+          "required_evidence_type": "Purchase Orders & Client Completion Certificates",
+          "applicable_rule": "Technical Evaluation Matrix Sec 5.1",
+          "threshold": ">= 50 Units"
+        }
+      ]
+    },
+    {
+      "id": "CL-5.2",
+      "clause_no": "Section V - Cl 5.2",
+      "heading": "Mandatory Standards & Technical Certifications",
+      "raw_text": "The product offered must carry mandatory Bureau of Indian Standards (BIS) certification under applicable Indian standard (IS 13095 / IS/ISO 10423) or valid API Monogram. Additionally, manufacturing facility must hold ISO 9001:2015 and statutory PESO / CCOE explosion-proof certificates valid on the date of bid submission.",
+      "category": "Certification",
+      "criticality": "MANDATORY",
+      "requirements": [
+        {
+          "id": "REQ-06",
+          "clause_reference": "Section V - Cl 5.2",
+          "category": "Certification",
+          "title": "Valid BIS / API Quality Certificate",
+          "description": "BIS or API certificate must be active and strictly valid on the bid submission date (15-Sep-2026).",
+          "criticality": "MANDATORY",
+          "validation_method": "DATE_WINDOW",
+          "required_evidence_type": "BIS License / API Monogram Certificate",
+          "applicable_rule": "BIS Conformity Assessment Regulations & Tender Specific Cl 5.2",
+          "threshold": "Valid On 2026-09-15"
+        },
+        {
+          "id": "REQ-07",
+          "clause_reference": "Section V - Cl 5.2",
+          "category": "Certification",
+          "title": "Pollution Control Board Clearance (SPCB NOC)",
+          "description": "Valid Consent to Operate (CTO) from State Pollution Control Board for manufacturing premises.",
+          "criticality": "HIGH",
+          "validation_method": "DATE_WINDOW",
+          "required_evidence_type": "SPCB Consent to Operate Certificate",
+          "applicable_rule": "Environmental Protection Act 1986 & MoPNG Guidelines",
+          "threshold": "Valid On 2026-09-15"
+        }
+      ]
+    },
+    {
+      "id": "CL-6.1",
+      "clause_no": "Section VI - Cl 6.1",
+      "heading": "Preference to Make in India (MII) Compliance",
+      "raw_text": "In accordance with DPIIT Order No. P-45021/2/2017-PP (BE-II), only Class-I Local Suppliers (local content >= 50%) and Class-II Local Suppliers (local content >= 20%) are eligible. For tenders with estimated value exceeding Rs 10 Crore, local content declaration must be certified by a statutory auditor or cost accountant.",
+      "category": "Local Content",
+      "criticality": "MANDATORY",
+      "requirements": [
+        {
+          "id": "REQ-08",
+          "clause_reference": "Section VI - Cl 6.1",
+          "category": "Local Content",
+          "title": "Class-I Local Content Certification (>= 50%)",
+          "description": "Audited certification of local value addition >= 50% with itemized bill of materials.",
+          "criticality": "MANDATORY",
+          "validation_method": "NUMERIC_COMPARISON",
+          "required_evidence_type": "Auditor Certificate & Bill of Materials (BoM)",
+          "applicable_rule": "Public Procurement Order (Preference to Make in India) 2017",
+          "threshold": ">= 50.0% Local Content"
+        }
+      ]
+    },
+    {
+      "id": "CL-7.1",
+      "clause_no": "Section VII - Cl 7.1",
+      "heading": "MSME / Startup Exemption & Employee Compliances",
+      "raw_text": "Bidders claiming exemption from prior turnover or experience under MSME / Startup India must submit valid Udyam Registration Certificate or DPIIT Recognition. Bidders must also provide proof of statutory employee compliance (EPFO / ESIC returns).",
+      "category": "Statutory & Legal",
+      "criticality": "MEDIUM",
+      "requirements": [
+        {
+          "id": "REQ-09",
+          "clause_reference": "Section VII - Cl 7.1",
+          "category": "Statutory & Legal",
+          "title": "MSME Udyam / Startup Recognition Verification",
+          "description": "Valid Udyam registration matching entity PAN with active enterprise status.",
+          "criticality": "MEDIUM",
+          "validation_method": "SOURCE_CROSS_CHECK",
+          "required_evidence_type": "Udyam Registration Certificate",
+          "applicable_rule": "MSME Development Act 2006 & GeM Rule 153",
+          "threshold": "Status == ACTIVE"
+        },
+        {
+          "id": "REQ-10",
+          "clause_reference": "Section VII - Cl 7.1",
+          "category": "Statutory & Legal",
+          "title": "Statutory Employee Compliances (EPF/ESIC)",
+          "description": "Consistent employee headcount declaration between regulatory filings and EPF returns.",
+          "criticality": "MEDIUM",
+          "validation_method": "ENTITY_RESOLUTION",
+          "required_evidence_type": "EPFO Electronic Challan Return (ECR)",
+          "applicable_rule": "Employees Provident Fund & MP Act 1952",
+          "threshold": "Headcount Consistency > 90%"
+        }
+      ]
+    }
+  ]
+}

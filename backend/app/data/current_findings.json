@@ -1,0 +1,454 @@
+[
+  {
+    "id": "FIND-ABC-01",
+    "bidder_id": "BID-ABC-001",
+    "requirement_id": "REQ-03",
+    "clause_reference": "Section IV - Cl 4.2",
+    "category": "Financial",
+    "title": "Material Turnover Inconsistency Between Balance Sheet and Bid Declaration",
+    "severity": "HIGH",
+    "status": "PENDING",
+    "confidence_score": 0.96,
+    "validation_method": "NUMERIC_COMPARISON",
+    "ai_recommendation": "CRITICAL RISK: Direct conflict between audited revenue and statutory declaration. Manual CA verification required; recommend issuance of Show-Cause / Ineligibility Clarification.",
+    "summary": "Audited Balance Sheet submitted in Doc #04 reports FY 2024-25 revenue of \u20b912,40,00,000, whereas Bidder Self-Declaration in Doc #09 explicitly declares turnover as \u20b98,20,00,000 (which falls below the mandatory tender threshold of \u20b910,00,00,000). The gap of \u20b94,20,00,000 represents a material contradiction.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-ABC-04",
+        "document_name": "Audited_Financial_Statement_FY24_25.pdf",
+        "page_number": 17,
+        "bounding_box": {
+          "x": 120.0,
+          "y": 340.0,
+          "width": 380.0,
+          "height": 45.0
+        },
+        "extracted_text": "Schedule 18 \u2014 Revenue from Operations: Total Turnover for Year Ended 31st March 2025: INR 12,40,00,000 (Twelve Crore Forty Lakhs Only)",
+        "field_label": "Audited Net Revenue",
+        "highlight_color": "#10b981"
+      },
+      {
+        "document_id": "DOC-ABC-09",
+        "document_name": "Schedule_IV_Vendor_Turnover_Declaration.pdf",
+        "page_number": 3,
+        "bounding_box": {
+          "x": 110.0,
+          "y": 210.0,
+          "width": 410.0,
+          "height": 50.0
+        },
+        "extracted_text": "Item 4(b) \u2014 We hereby confirm our certified annual turnover for FY 2024-25 as INR 8,20,00,000 (Eight Crore Twenty Lakhs Only) under GeM guidelines.",
+        "field_label": "Declared Annual Turnover",
+        "highlight_color": "#ef4444"
+      }
+    ],
+    "source_verification_status": "DISCREPANCY_DETECTED",
+    "source_adapter": "MockMCAProvider",
+    "source_badge": "MOCK",
+    "decision_reason": null,
+    "decided_by": null,
+    "decided_at": null
+  },
+  {
+    "id": "FIND-ABC-02",
+    "bidder_id": "BID-ABC-001",
+    "requirement_id": "REQ-01",
+    "clause_reference": "Section IV - Cl 4.1",
+    "category": "Statutory & Legal",
+    "title": "Legal Entity Name Discrepancy (Limited vs Private Limited)",
+    "severity": "HIGH",
+    "status": "PENDING",
+    "confidence_score": 0.89,
+    "validation_method": "ENTITY_RESOLUTION",
+    "ai_recommendation": "HIGH RISK: Legal entity mismatch between Public Ltd and Private Ltd structure. Verify MCA master data and certificate of incorporation.",
+    "summary": "GST Registration Certificate (REG-06) registers the entity under the name 'ABC Industries Limited' (Public Company), whereas PAN Card and Bid Submission Undertaking are registered under 'ABC Industries Pvt Ltd' (Private Company). CIN reflects conversion history that is unresolved in submitted documents.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-ABC-01",
+        "document_name": "GST_Registration_Certificate_REG06.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 140.0,
+          "y": 180.0,
+          "width": 320.0,
+          "height": 35.0
+        },
+        "extracted_text": "1. Legal Name: ABC Industries Limited | 2. Constitution of Business: Public Limited Company",
+        "field_label": "GST Legal Name",
+        "highlight_color": "#f59e0b"
+      },
+      {
+        "document_id": "DOC-ABC-02",
+        "document_name": "PAN_Card_and_Undertaking.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 105.0,
+          "y": 160.0,
+          "width": 310.0,
+          "height": 35.0
+        },
+        "extracted_text": "Permanent Account Number: AAACB1234A | Name: ABC Industries Pvt Ltd",
+        "field_label": "PAN Card Registered Name",
+        "highlight_color": "#ef4444"
+      }
+    ],
+    "source_verification_status": "TOKEN_MISMATCH",
+    "source_adapter": "MockGSTProvider",
+    "source_badge": "MOCK",
+    "decision_reason": null,
+    "decided_by": null,
+    "decided_at": null
+  },
+  {
+    "id": "FIND-ABC-03",
+    "bidder_id": "BID-ABC-001",
+    "requirement_id": "REQ-06",
+    "clause_reference": "Section V - Cl 5.2",
+    "category": "Certification",
+    "title": "BIS Quality License Expired 3 Months Prior to Bid Submission Date",
+    "severity": "HIGH",
+    "status": "PENDING",
+    "confidence_score": 0.99,
+    "validation_method": "DATE_WINDOW",
+    "ai_recommendation": "NON-COMPLIANT ON BID DATE: Certificate validity expired on 09-Jun-2026. Bid was submitted on 14-Sep-2026 (Deadline 15-Sep-2026). Bidder submitted a subsequent renewal receipt dated 28-Sep-2026 which does not cure non-compliance on submission date.",
+    "summary": "Tender Clause 5.2 mandates that the product offered must carry a valid BIS License active on the bid submission date (15-Sep-2026). Bureau of Indian Standards License CM/L-8472910 expired on 09-Jun-2026, creating a 98-day validity lapse during the active bidding window.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-ABC-07",
+        "document_name": "BIS_License_Certificate_CML8472910.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 115.0,
+          "y": 280.0,
+          "width": 370.0,
+          "height": 40.0
+        },
+        "extracted_text": "License Validity Period: From 10/01/2023 to 09/06/2026 (Midnight). Endorsement for renewal required prior to expiry.",
+        "field_label": "License Validity Dates",
+        "highlight_color": "#ef4444"
+      }
+    ],
+    "source_verification_status": "EXPIRED_ON_ANCHOR_DATE",
+    "source_adapter": "MockDigiLockerProvider",
+    "source_badge": "SIMULATED",
+    "decision_reason": null,
+    "decided_by": null,
+    "decided_at": null
+  },
+  {
+    "id": "FIND-ABC-04",
+    "bidder_id": "BID-ABC-001",
+    "requirement_id": "REQ-07",
+    "clause_reference": "Section V - Cl 5.2",
+    "category": "Certification",
+    "title": "State Pollution Control Board Consent to Operate (CTO) Expired",
+    "severity": "MEDIUM",
+    "status": "PENDING",
+    "confidence_score": 0.95,
+    "validation_method": "DATE_WINDOW",
+    "ai_recommendation": "MEDIUM RISK: Environmental clearance expired 14 months before tender publication. Verify if renewal deemed approval applies.",
+    "summary": "Maharashtra Pollution Control Board (MPCB) Consent to Operate for the valve fabrication facility in Pune lapsed on 31-Jul-2025. No valid renewal endorsement provided in technical tender envelope.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-ABC-11",
+        "document_name": "MPCB_Consent_to_Operate_Certificate.pdf",
+        "page_number": 2,
+        "bounding_box": {
+          "x": 130.0,
+          "y": 420.0,
+          "width": 340.0,
+          "height": 38.0
+        },
+        "extracted_text": "This Consent is valid for the period up to 31/07/2025 only for manufacturing of industrial valves.",
+        "field_label": "Consent Expiry Date",
+        "highlight_color": "#f59e0b"
+      }
+    ],
+    "source_verification_status": "EXPIRED",
+    "source_adapter": "MockDigiLockerProvider",
+    "source_badge": "SIMULATED",
+    "decision_reason": null,
+    "decided_by": null,
+    "decided_at": null
+  },
+  {
+    "id": "FIND-ABC-05",
+    "bidder_id": "BID-ABC-001",
+    "requirement_id": "REQ-10",
+    "clause_reference": "Section VII - Cl 7.1",
+    "category": "Statutory & Legal",
+    "title": "Employee Headcount Variance Across Regulatory Returns",
+    "severity": "MEDIUM",
+    "status": "PENDING",
+    "confidence_score": 0.88,
+    "validation_method": "ENTITY_RESOLUTION",
+    "ai_recommendation": "MODERATE RISK: Employee variance may impact MSME investment/turnover ceiling qualification.",
+    "summary": "Udyam Registration Certificate reports 42 employees, whereas statutory EPFO Electronic Challan Return (ECR) for August 2026 reports 67 enrolled wage earners.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-ABC-05",
+        "document_name": "Udyam_Registration_Certificate.pdf",
+        "page_number": 2,
+        "bounding_box": {
+          "x": 100.0,
+          "y": 250.0,
+          "width": 280.0,
+          "height": 35.0
+        },
+        "extracted_text": "Number of Persons Employed: Male: 36, Female: 6, Total: 42",
+        "field_label": "Udyam Headcount",
+        "highlight_color": "#3b82f6"
+      },
+      {
+        "document_id": "DOC-ABC-06",
+        "document_name": "EPFO_ECR_Receipt_Aug2026.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 110.0,
+          "y": 190.0,
+          "width": 300.0,
+          "height": 35.0
+        },
+        "extracted_text": "Total Contributing Members (Employees) for Month of August 2026: 67",
+        "field_label": "EPFO Enrolled Count",
+        "highlight_color": "#f59e0b"
+      }
+    ],
+    "source_verification_status": "VARIANCE_RECORDED",
+    "source_adapter": "MockUdyamProvider",
+    "source_badge": "MOCK",
+    "decision_reason": null,
+    "decided_by": null,
+    "decided_at": null
+  },
+  {
+    "id": "FIND-ABC-06",
+    "bidder_id": "BID-ABC-001",
+    "requirement_id": "REQ-05",
+    "clause_reference": "Section V - Cl 5.1",
+    "category": "Technical",
+    "title": "Prior Experience in API 6D Subsea Valves Verified",
+    "severity": "LOW",
+    "status": "ACCEPTED",
+    "confidence_score": 0.98,
+    "validation_method": "NUMERIC_COMPARISON",
+    "ai_recommendation": "COMPLIANT: Submitted client completion certificates confirm supply of 64 units to Oil India Ltd and GAIL within qualifying 5-year window.",
+    "summary": "Past performance exceeds the 50-unit threshold stipulated in Clause 5.1 with authentic PSU purchase orders verified.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-ABC-08",
+        "document_name": "Client_Completion_Certificate_GAIL.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 90.0,
+          "y": 200.0,
+          "width": 360.0,
+          "height": 40.0
+        },
+        "extracted_text": "Certified that ABC Industries has successfully executed supply of 64 Nos. 10,000 PSI High-Pressure Valves under PO GAIL/2023/VLV/109.",
+        "field_label": "Past Performance Count",
+        "highlight_color": "#10b981"
+      }
+    ],
+    "source_verification_status": "VERIFIED",
+    "source_adapter": "MockGeMProvider",
+    "source_badge": "MOCK",
+    "decision_reason": "Verified against GAIL tender reference registry",
+    "decided_by": "OFF-8821",
+    "decided_at": "2026-09-02T16:30:00+05:30"
+  },
+  {
+    "id": "FIND-ABC-07",
+    "bidder_id": "BID-ABC-001",
+    "requirement_id": "REQ-09",
+    "clause_reference": "Section VII - Cl 7.1",
+    "category": "Statutory & Legal",
+    "title": "MSME Medium Enterprise Status Verified on Udyam Portal",
+    "severity": "LOW",
+    "status": "ACCEPTED",
+    "confidence_score": 0.97,
+    "validation_method": "SOURCE_CROSS_CHECK",
+    "ai_recommendation": "COMPLIANT: Active registration confirmed in NIC/MSME registry.",
+    "summary": "UDYAM-MH-12-0049218 is active on the Udyam portal under NIC Code 28131 (Manufacture of industrial valves).",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-ABC-05",
+        "document_name": "Udyam_Registration_Certificate.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 80.0,
+          "y": 140.0,
+          "width": 380.0,
+          "height": 35.0
+        },
+        "extracted_text": "Enterprise Type: Medium | NIC 2-Digit: 28 - Manufacture of machinery and equipment n.e.c.",
+        "field_label": "Udyam Enterprise Classification",
+        "highlight_color": "#10b981"
+      }
+    ],
+    "source_verification_status": "VERIFIED_ACTIVE",
+    "source_adapter": "MockUdyamProvider",
+    "source_badge": "MOCK",
+    "decision_reason": "Automated verification against mock Udyam registry passed",
+    "decided_by": "OFF-8821",
+    "decided_at": "2026-09-02T16:31:00+05:30"
+  },
+  {
+    "id": "FIND-XYZ-01",
+    "bidder_id": "BID-XYZ-002",
+    "requirement_id": "REQ-08",
+    "clause_reference": "Section VI - Cl 6.1",
+    "category": "Local Content",
+    "title": "Make in India Local Content Discrepancy (62.4% Declared vs 48.0% Itemized)",
+    "severity": "MEDIUM",
+    "status": "PENDING",
+    "confidence_score": 0.92,
+    "validation_method": "NUMERIC_COMPARISON",
+    "ai_recommendation": "RECOMMEND REVIEW: Calculated domestic value addition from Bill of Materials is 48.0%, which falls below Class-I threshold (50%). Auditor declaration of 62.4% includes imported actuator assembly overheads.",
+    "summary": "Auditor Certificate claims 62.4% local content, qualifying bidder as Class-I Local Supplier. However, detailed component Bill of Materials (BoM Annexure III) shows imported hydraulic actuators from Germany representing 52.0% of CIF raw value, yielding a maximum domestic value of 48.0%.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-XYZ-03",
+        "document_name": "MII_Local_Content_Auditor_Certificate.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 100.0,
+          "y": 240.0,
+          "width": 380.0,
+          "height": 40.0
+        },
+        "extracted_text": "We certify that the Local Value Addition in the offered valves is 62.40% meeting Class-I Local Supplier norms.",
+        "field_label": "Auditor Declared Local %",
+        "highlight_color": "#10b981"
+      },
+      {
+        "document_id": "DOC-XYZ-06",
+        "document_name": "Bill_of_Materials_Annexure_III.pdf",
+        "page_number": 4,
+        "bounding_box": {
+          "x": 110.0,
+          "y": 320.0,
+          "width": 370.0,
+          "height": 45.0
+        },
+        "extracted_text": "Subsea Actuator Assembly (Imported - Germany): 52.0% | Domestic Forgings & Trim: 48.0%",
+        "field_label": "Itemized Domestic Component",
+        "highlight_color": "#ef4444"
+      }
+    ],
+    "source_verification_status": "CALCULATION_MISMATCH",
+    "source_adapter": "MockGeMProvider",
+    "source_badge": "MOCK",
+    "decision_reason": null,
+    "decided_by": null,
+    "decided_at": null
+  },
+  {
+    "id": "FIND-XYZ-02",
+    "bidder_id": "BID-XYZ-002",
+    "requirement_id": "REQ-04",
+    "clause_reference": "Section IV - Cl 4.3",
+    "category": "Financial",
+    "title": "OEM Authorization Letter Ambiguity on Expiry Terms",
+    "severity": "MEDIUM",
+    "status": "PENDING",
+    "confidence_score": 0.85,
+    "validation_method": "DATE_WINDOW",
+    "ai_recommendation": "REVIEW REQUIRED: Letter states 'Valid for one calendar year' dated 14 months prior to tender.",
+    "summary": "OEM Authorization Letter issued by Master Valve Corp is dated 10-Jul-2025 and states validity for 'one calendar year from date of execution'. Bid submission was 15-Sep-2026. Explicit extension letter is missing.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-XYZ-04",
+        "document_name": "OEM_Manufacturer_Authorization_Letter.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 90.0,
+          "y": 310.0,
+          "width": 360.0,
+          "height": 40.0
+        },
+        "extracted_text": "Authorization Date: 10/07/2025. This authorization remains valid for a period of one (1) calendar year.",
+        "field_label": "OEM Letter Validity",
+        "highlight_color": "#f59e0b"
+      }
+    ],
+    "source_verification_status": "EXPIRED_TERMS",
+    "source_adapter": "MockGeMProvider",
+    "source_badge": "MOCK",
+    "decision_reason": null,
+    "decided_by": null,
+    "decided_at": null
+  },
+  {
+    "id": "FIND-PQR-01",
+    "bidder_id": "BID-PQR-003",
+    "requirement_id": "REQ-03",
+    "clause_reference": "Section IV - Cl 4.2",
+    "category": "Financial",
+    "title": "Turnover Requirement Full Compliance (\u20b928.4 Cr Average)",
+    "severity": "LOW",
+    "status": "ACCEPTED",
+    "confidence_score": 0.99,
+    "validation_method": "NUMERIC_COMPARISON",
+    "ai_recommendation": "COMPLIANT: Financial statements cross-verified with MCA21 filings. Consistent revenue figures.",
+    "summary": "Audited 3-year average turnover of \u20b928.4 Crore comfortably exceeds the \u20b910 Crore threshold with zero cross-document variance.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-PQR-02",
+        "document_name": "CA_Turnover_Certificate_UDIN.pdf",
+        "page_number": 1,
+        "bounding_box": {
+          "x": 100.0,
+          "y": 220.0,
+          "width": 380.0,
+          "height": 35.0
+        },
+        "extracted_text": "Average Annual Financial Turnover for last 3 FYs: INR 28,42,10,000 (UDIN: 26048192AAAA9812)",
+        "field_label": "Certified CA Turnover",
+        "highlight_color": "#10b981"
+      }
+    ],
+    "source_verification_status": "VERIFIED_CORROBORATED",
+    "source_adapter": "MockMCAProvider",
+    "source_badge": "MOCK",
+    "decision_reason": "MCA21 financial records cross-checked and verified",
+    "decided_by": "OFF-8821",
+    "decided_at": "2026-09-02T15:20:00+05:30"
+  },
+  {
+    "id": "FIND-PQR-02",
+    "bidder_id": "BID-PQR-003",
+    "requirement_id": "REQ-06",
+    "clause_reference": "Section V - Cl 5.2",
+    "category": "Certification",
+    "title": "BIS and API 6D Monogram Licenses Active Through 2028",
+    "severity": "LOW",
+    "status": "ACCEPTED",
+    "confidence_score": 0.99,
+    "validation_method": "DATE_WINDOW",
+    "ai_recommendation": "COMPLIANT: High quality certification with continuous active validity.",
+    "summary": "BIS License CM/L-9102938 and API 6D Certificate #6D-1942 are active and valid until March 2028.",
+    "evidence_excerpts": [
+      {
+        "document_id": "DOC-PQR-05",
+        "document_name": "API_6D_and_BIS_Certification_Dossier.pdf",
+        "page_number": 2,
+        "bounding_box": {
+          "x": 110.0,
+          "y": 180.0,
+          "width": 390.0,
+          "height": 40.0
+        },
+        "extracted_text": "API Spec 6D License 6D-1942: Effective Date: 12/03/2024 | Expiration Date: 11/03/2028",
+        "field_label": "API Certificate Validity",
+        "highlight_color": "#10b981"
+      }
+    ],
+    "source_verification_status": "VERIFIED_ACTIVE",
+    "source_adapter": "MockDigiLockerProvider",
+    "source_badge": "SIMULATED",
+    "decision_reason": "Verified active via DigiLocker certificate repository",
+    "decided_by": "OFF-8821",
+    "decided_at": "2026-09-02T15:22:00+05:30"
+  }
+]
