@@ -1,5 +1,5 @@
 /**
- * VERITAS-GEM Main Application Controller (Stitch AI Architecture)
+ * VERITAS-GEM Main Application Controller
  */
 import { store } from './state.js';
 import { api } from './api.js';

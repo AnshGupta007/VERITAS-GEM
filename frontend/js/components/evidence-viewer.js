@@ -23,7 +23,7 @@ export function renderEvidenceViewer(container) {
         </h2>
       </div>
       <div style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); display: flex; align-items: center; gap: 0.5rem;">
-        <span class="badge badge-info">Stitch Forensic Grid</span>
+        <span class="badge badge-info">Forensic Verification Grid</span>
         <span>Clause → Inferred Finding → Primary Dual OCR</span>
       </div>
     </div>

@@ -26,9 +26,6 @@ export function renderCommandCenter(container) {
       <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
         <div>
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-            <span class="badge badge-real" style="background: linear-gradient(135deg, #d4af37 0%, #f2ca50 100%); color: #000; font-weight: 800;">
-              STITCH AI DESIGN GENERATION
-            </span>
             <span class="badge badge-info">COMMAND CENTER v2.0</span>
           </div>
           <h2 style="font-family: 'Geist', var(--font-display); font-size: 2rem; color: #fff; font-weight: 700; tracking: -0.01em;">

@@ -5,7 +5,7 @@
 class StateStore {
   constructor() {
     this.state = {
-      currentView: 'command-center', // Flagship view: Stitch AI Command Center HUD
+      currentView: 'command-center', // Flagship view: Command Center HUD
       tender: null,
       bidders: [],
       selectedBidderId: 'BID-ABC-001',
