@@ -96,14 +96,14 @@ app.include_router(legacy_router)
 if FRONTEND_DIR.exists():
     app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
-    @app.get("/", include_in_schema=False)
+    @app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
     async def serve_index():
         index_file = FRONTEND_DIR / "index.html"
         if index_file.exists():
             return FileResponse(index_file)
         return {"message": f"VERITAS-GEM API running. Frontend folder exists at {FRONTEND_DIR}"}
 
-    @app.get("/{full_path:path}", include_in_schema=False)
+    @app.api_route("/{full_path:path}", methods=["GET", "HEAD"], include_in_schema=False)
     async def serve_spa(full_path: str):
         # Do not catch-all for missing API endpoints
         if full_path in ("api", "api/v1") or full_path.startswith("api/") or full_path.startswith("api/v1/"):
