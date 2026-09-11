@@ -8,6 +8,7 @@ import { getRiskBadgeClass } from '../utils.js';
 export function renderContradictionRadar(container) {
   const state = store.getState();
   const selectedBidder = store.getSelectedBidder();
+  const targetBidderId = selectedBidder?.id || state.selectedBidderId || 'BID-ABC-001';
 
   container.innerHTML = `
     <!-- Header Banner -->
@@ -42,6 +43,72 @@ export function renderContradictionRadar(container) {
       </div>
     </div>
 
+    <!-- Forensic Sonar Dish Display (Interactive Killer Visual) -->
+    <div class="radar-dish-container hover-spring" style="margin-bottom: var(--spacing-xl); height: 210px; position: relative;">
+      <!-- Telemetry Overlay -->
+      <div style="position: absolute; top: 12px; left: 16px; z-index: 20; display: flex; align-items: center; gap: 8px;">
+        <span class="status-dot status-dot-danger live-beacon"></span>
+        <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #ffb4ab; letter-spacing: 0.05em; font-weight: 700;">
+          FORENSIC SONAR DISH · REAL-TIME ARTIFACT CROSS-EXAMINATION
+        </span>
+      </div>
+      <div style="position: absolute; top: 12px; right: 16px; z-index: 20; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); display: flex; align-items: center; gap: 6px;">
+        <span class="material-symbols-outlined" style="font-size: 14px;">sensors</span>
+        <span>SWEEP: 360° · AZIMUTH: ACTIVE · 2.4 GHz</span>
+      </div>
+
+      <!-- Sonar Concentric Distance Rings -->
+      <div class="radar-sonar-ring" style="width: 60px; height: 60px; border-color: rgba(0, 241, 254, 0.12);"></div>
+      <div class="radar-sonar-ring" style="width: 120px; height: 120px; border-color: rgba(0, 241, 254, 0.18);"></div>
+      <div class="radar-sonar-ring" style="width: 180px; height: 180px; border-color: rgba(0, 241, 254, 0.25);"></div>
+      
+      <!-- Axis Crosshairs -->
+      <div class="radar-grid-axis" style="top: 50%; left: 0; right: 0; height: 1px;"></div>
+      <div class="radar-grid-axis" style="left: 50%; top: 0; bottom: 0; width: 1px;"></div>
+
+      <!-- Rotating Sweep Beam -->
+      <div class="${targetBidderId === 'BID-PQR-003' ? 'radar-sweep-beam' : 'radar-sweep-beam-danger'}"></div>
+
+      <!-- Dynamic Blip Markers -->
+      <div id="radar-blips-mount" style="position: absolute; inset: 0; pointer-events: auto; z-index: 15;">
+        ${targetBidderId === 'BID-ABC-001' ? `
+          <!-- Blip 1: Turnover Discrepancy -->
+          <div class="radar-blip-node" style="left: 68%; top: 35%; background: #ef4444; box-shadow: 0 0 14px #ef4444; animation: radarBlip 2s infinite;" title="Turnover Conflict: ₹4.20 Cr Discrepancy">
+            <span style="position: absolute; top: -20px; left: 14px; font-family: var(--font-mono); font-size: 10px; color: #ffb4ab; white-space: nowrap; font-weight: 700; text-shadow: 0 0 8px rgba(0,0,0,0.9);">
+              ₹4.20 Cr Turnover Discrepancy ⚡
+            </span>
+          </div>
+          <!-- Blip 2: Expired BIS License -->
+          <div class="radar-blip-node" style="left: 38%; top: 65%; background: #f59e0b; box-shadow: 0 0 14px #f59e0b; animation: radarBlip 2.4s infinite;" title="Temporal Invalidation: Expired BIS License">
+            <span style="position: absolute; top: -18px; left: 14px; font-family: var(--font-mono); font-size: 10px; color: #fde68a; white-space: nowrap; font-weight: 700; text-shadow: 0 0 8px rgba(0,0,0,0.9);">
+              Expired BIS License (98d) ⚠️
+            </span>
+          </div>
+          <!-- Blip 3: Shell Entity Risk -->
+          <div class="radar-blip-node" style="left: 58%; top: 72%; background: #ef4444; box-shadow: 0 0 14px #ef4444; animation: radarBlip 1.8s infinite;" title="EPFO Anomaly: 4 Staff Reported">
+            <span style="position: absolute; top: -18px; left: 14px; font-family: var(--font-mono); font-size: 10px; color: #ffb4ab; white-space: nowrap; font-weight: 700; text-shadow: 0 0 8px rgba(0,0,0,0.9);">
+              EPFO Headcount Anomaly 🚨
+            </span>
+          </div>
+        ` : targetBidderId === 'BID-XYZ-002' ? `
+          <!-- Blip: Local Content Discrepancy -->
+          <div class="radar-blip-node" style="left: 64%; top: 40%; background: #f59e0b; box-shadow: 0 0 14px #f59e0b; animation: radarBlip 2.2s infinite;" title="Local Content: 62.4% declared vs 48% verified">
+            <span style="position: absolute; top: -18px; left: 14px; font-family: var(--font-mono); font-size: 10px; color: #fde68a; white-space: nowrap; font-weight: 700; text-shadow: 0 0 8px rgba(0,0,0,0.9);">
+              Local Content Discrepancy (14.4%) ⚠️
+            </span>
+          </div>
+        ` : `
+          <!-- Clean Compliant Scan -->
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 15;">
+            <span class="badge badge-low glow-emerald glow-breathe-emerald" style="font-size: 0.8rem; padding: 0.4rem 1rem;">
+              <span class="material-symbols-outlined" style="font-size: 16px;">verified</span>
+              100% CLEAR RADAR · ZERO CONTRADICTIONS
+            </span>
+          </div>
+        `}
+      </div>
+    </div>
+
     <!-- Contradictions Container -->
     <div id="contradictions-grid" class="contradiction-list">
       <div class="card" style="text-align: center; padding: 2rem;">Loading contradiction graph...</div>
@@ -49,7 +116,6 @@ export function renderContradictionRadar(container) {
   `;
 
   let activeMode = 'tender';
-  const targetBidderId = selectedBidder?.id || state.selectedBidderId || 'BID-ABC-001';
 
   // Mode toggles
   const btnTender = container.querySelector('#tab-mode-tender');
@@ -96,11 +162,11 @@ export function renderContradictionRadar(container) {
       .then((contradictions) => {
         if (contradictions.length === 0) {
           grid.innerHTML = `
-            <div class="card" style="text-align: center; padding: 3rem; grid-column: 1 / -1; border-color: rgba(16, 185, 129, 0.3);">
+            <div class="card hover-spring stagger-1 glow-emerald glow-breathe-emerald" style="text-align: center; padding: 3rem; grid-column: 1 / -1; border-color: rgba(16, 185, 129, 0.3);">
               <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">✅</div>
               <h3 style="color: #86efac; font-size: 1.25rem; margin-bottom: 0.5rem;">Zero Cross-Document Contradictions Detected</h3>
               <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">
-                All financial, statutory, technical, and regulatory figures submitted by <strong>${selectedBidder.legal_name}</strong> are mathematically and legally consistent across all submitted artifacts.
+                All financial, statutory, technical, and regulatory figures submitted by <strong>${selectedBidder?.legal_name || 'the vendor'}</strong> are mathematically and legally consistent across all submitted artifacts.
               </p>
             </div>
           `;
@@ -108,8 +174,8 @@ export function renderContradictionRadar(container) {
         }
 
         grid.innerHTML = contradictions
-          .map((c) => `
-            <div class="contradiction-card">
+          .map((c, idx) => `
+            <div class="contradiction-card hover-spring stagger-${(idx % 4) + 1} glow-red">
               <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
                 <div>
                   <span class="badge ${getRiskBadgeClass(c.severity)}" style="margin-bottom: 0.35rem;">

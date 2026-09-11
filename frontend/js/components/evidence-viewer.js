@@ -101,7 +101,7 @@ export function renderEvidenceViewer(container) {
 
       content.innerHTML = `
         <!-- COLUMN 1: REQUIREMENT SPECIFICATION -->
-        <div class="col-panel glass-panel ghost-border" style="border-radius: 8px; padding: 1.25rem;">
+        <div class="col-panel glass-panel ghost-border hover-spring stagger-1" style="border-radius: 8px; padding: 1.25rem;">
           <div class="col-header" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem;">
             <div>
               <span class="badge badge-info" style="font-family: var(--font-mono); font-size: 0.7rem;">1. TENDER CLAUSE</span>
@@ -147,7 +147,7 @@ export function renderEvidenceViewer(container) {
         </div>
 
         <!-- COLUMN 2: GROUNDED FINDING & AI REASONING -->
-        <div class="col-panel glass-panel ghost-border glow-gold" style="border-radius: 8px; padding: 1.25rem;">
+        <div class="col-panel glass-panel ghost-border glow-gold hover-spring stagger-2" style="border-radius: 8px; padding: 1.25rem;">
           <div class="col-header" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem;">
             <div>
               <span class="badge badge-info" style="font-family: var(--font-mono); font-size: 0.7rem;">2. AI INFERENCE & CONFIDENCE</span>
@@ -175,7 +175,7 @@ export function renderEvidenceViewer(container) {
                 <strong style="font-family: var(--font-mono); color: var(--accent-gold-bright);">${(f.confidence_score * 100).toFixed(0)}% HIGH CONF</strong>
               </div>
               <div class="score-bar-track" style="margin: 0 0 0.5rem 0;">
-                <div class="score-bar-fill" style="width: ${f.confidence_score * 100}%; background: var(--accent-gold);"></div>
+                <div class="score-bar-fill meter-smooth" style="width: ${f.confidence_score * 100}%; background: var(--accent-gold);"></div>
               </div>
             </div>
 
@@ -221,7 +221,7 @@ export function renderEvidenceViewer(container) {
         </div>
 
         <!-- COLUMN 3: SIDE-BY-SIDE DUAL SOURCE DOCUMENT VIEWER -->
-        <div class="col-panel glass-panel ghost-border" style="border-radius: 8px; padding: 1.25rem; background: #0c101a;">
+        <div class="col-panel glass-panel ghost-border hover-spring stagger-3" style="border-radius: 8px; padding: 1.25rem; background: #0c101a;">
           <div class="col-header" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.75rem; margin-bottom: 1rem;">
             <div>
               <span class="badge badge-info" style="font-family: var(--font-mono); font-size: 0.7rem;">3. PRIMARY EVIDENCE (Dual OCR)</span>

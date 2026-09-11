@@ -67,7 +67,7 @@ function loadCommercialData(container) {
         <!-- Top Statutory Metrics -->
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
           <!-- Metric 1: Raw L1 -->
-          <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem; border-color: rgba(0, 241, 254, 0.3);">
+          <div class="glass-panel ghost-border rounded-lg hover-spring stagger-1 glow-cyan glow-breathe-cyan" style="padding: 1.25rem; border-color: rgba(0, 241, 254, 0.3);">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem;">
               Raw Lowest Price (L1)
             </div>
@@ -80,7 +80,7 @@ function loadCommercialData(container) {
           </div>
 
           <!-- Metric 2: PPO-MII Ceiling -->
-          <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem;">
+          <div class="glass-panel ghost-border rounded-lg hover-spring stagger-2" style="padding: 1.25rem;">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem;">
               PPO-MII 20% Preference Ceiling
             </div>
@@ -93,7 +93,7 @@ function loadCommercialData(container) {
           </div>
 
           <!-- Metric 3: Price Variance -->
-          <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem;">
+          <div class="glass-panel ghost-border rounded-lg hover-spring stagger-3 glow-emerald glow-breathe-emerald" style="padding: 1.25rem;">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem;">
               Qualified Class-I Gap
             </div>
@@ -106,7 +106,7 @@ function loadCommercialData(container) {
           </div>
 
           <!-- Metric 4: Award Recommendation -->
-          <div class="glass-panel ghost-border rounded-lg ${data.price_matched ? 'glow-emerald' : 'glow-gold'}" style="padding: 1.25rem;">
+          <div class="glass-panel ghost-border rounded-lg hover-spring stagger-4 ${data.price_matched ? 'glow-emerald' : 'glow-gold'}" style="padding: 1.25rem;">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: ${data.price_matched ? '#86efac' : '#fde68a'}; margin-bottom: 0.25rem;">
               Statutory Award Status
             </div>
@@ -120,7 +120,7 @@ function loadCommercialData(container) {
         </div>
 
         <!-- Statutory Ruling Callout -->
-        <div class="glass-panel ghost-border rounded-lg ${data.price_matched ? 'glow-emerald' : 'glow-gold'}" style="padding: 1.25rem; margin-bottom: 1.5rem; background: ${data.price_matched ? 'rgba(16, 185, 129, 0.08)' : 'rgba(212, 175, 55, 0.08)'};">
+        <div class="glass-panel ghost-border rounded-lg hover-spring ${data.price_matched ? 'glow-emerald glow-breathe-emerald' : 'glow-gold glow-breathe-gold'}" style="padding: 1.25rem; margin-bottom: 1.5rem; background: ${data.price_matched ? 'rgba(16, 185, 129, 0.08)' : 'rgba(212, 175, 55, 0.08)'};">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div style="display: flex; align-items: center; gap: 0.75rem;">
               <span class="material-symbols-outlined" style="font-size: 24px; color: ${data.price_matched ? '#10b981' : '#f59e0b'};">

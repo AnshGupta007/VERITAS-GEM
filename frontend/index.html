@@ -200,59 +200,62 @@
   <!-- ========================================================================= -->
   <!-- AUTHENTIC STITCH TOP NAVBAR (Header)                                     -->
   <!-- ========================================================================= -->
-  <header class="bg-surface dark:bg-surface border-b border-white/10 backdrop-blur-md bg-surface/80 flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50">
-    <div class="flex items-center gap-4">
-      <div class="flex flex-col">
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
-          <h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary tracking-tight">VERITAS-GEM</h1>
+  <header class="bg-surface/95 dark:bg-surface/95 border-b border-white/10 backdrop-blur-xl flex justify-between items-center w-full px-6 lg:px-8 h-[74px] min-h-[74px] sticky top-0 z-50">
+    <div class="flex items-center gap-5">
+      <div class="flex flex-col justify-center">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-primary text-2xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <h1 class="text-2xl font-bold text-primary dark:text-primary tracking-tight leading-tight m-0" style="font-family: 'Geist', var(--font-heading);">VERITAS-GEM</h1>
         </div>
-        <span class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">Integrated Procurement Compliance &amp; Risk Intelligence Co-Pilot</span>
+        <span class="font-label-mono text-on-surface-variant text-[10.5px] leading-normal tracking-tight mt-0.5">Integrated Procurement Compliance &amp; Risk Intelligence Co-Pilot</span>
       </div>
-      <div class="h-8 w-px bg-white/10 mx-4 hidden sm:block"></div>
-      <div class="hidden sm:flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded ghost-border tabular-nums font-label-mono text-label-mono">
+      <div class="h-8 w-px bg-white/10 mx-3 hidden xl:block"></div>
+      <div class="hidden xl:flex items-center gap-2.5 bg-surface-container/90 px-3.5 py-1.5 rounded-lg ghost-border tabular-nums font-label-mono text-xs">
         <span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="description">description</span>
         <span id="stitch-header-tender" class="text-on-surface font-semibold">GEM/2026/B/8849201 | Value: ₹48.50 Cr</span>
-        <span class="text-on-surface-variant text-xs truncate max-w-xs ml-2">(High-Pressure Subsea Control Valves)</span>
+        <span class="text-on-surface-variant text-xs truncate max-w-xs ml-1">(High-Pressure Subsea Control Valves)</span>
       </div>
     </div>
 
-    <div class="flex items-center gap-6">
-      <div class="flex items-center gap-3">
+    <div class="flex items-center gap-5">
+      <div class="flex items-center gap-2.5">
         <!-- Ingest Custom Tender Button -->
-        <button id="btn-header-upload" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-secondary-container hover:bg-surface-container-highest/50 transition-colors rounded ghost-border font-label-mono text-label-mono text-xs cursor-pointer">
+        <button id="btn-header-upload" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-secondary-container hover:bg-surface-container-highest/60 transition-all rounded-lg ghost-border font-label-mono text-xs cursor-pointer hover-spring">
           <span class="material-symbols-outlined text-sm">upload_file</span>
           <span>Ingest Tender</span>
         </button>
 
         <!-- Policy Sandbox Button -->
-        <button id="btn-header-policy" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-primary-fixed hover:bg-surface-container-highest/50 transition-colors rounded ghost-border font-label-mono text-label-mono text-xs cursor-pointer">
+        <button id="btn-header-policy" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-primary-fixed hover:bg-surface-container-highest/60 transition-all rounded-lg ghost-border font-label-mono text-xs cursor-pointer hover-spring">
           <span class="material-symbols-outlined text-sm text-primary">tune</span>
           <span>Policy Sandbox</span>
         </button>
 
         <!-- Judge Demo Mode Button -->
-        <button id="btn-pitch-tour" class="flex items-center gap-2 px-4 py-2 bg-secondary-container text-on-secondary-container rounded font-label-mono text-label-mono font-bold hover:brightness-110 transition-all glow-cyan text-xs cursor-pointer">
+        <button id="btn-pitch-tour" class="flex items-center gap-2 px-3.5 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-label-mono text-xs font-bold hover:brightness-110 transition-all glow-cyan cursor-pointer hover-spring">
           <span class="material-symbols-outlined text-sm">bolt</span>
           <span>Judge Demo Mode</span>
         </button>
 
         <!-- Reset Demo Pipeline Button -->
-        <button id="btn-reset-demo" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-primary-fixed hover:bg-surface-container-highest/50 transition-colors rounded ghost-border font-label-mono text-label-mono text-xs cursor-pointer">
+        <button id="btn-reset-demo" class="flex items-center gap-2 px-3 py-2 bg-surface-container text-on-surface hover:text-primary-fixed hover:bg-surface-container-highest/60 transition-all rounded-lg ghost-border font-label-mono text-xs cursor-pointer hover-spring">
           <span class="material-symbols-outlined text-sm">restart_alt</span>
           <span>Reset Pipeline</span>
         </button>
       </div>
 
-      <div class="h-8 w-px bg-white/10 mx-2 hidden md:block"></div>
+      <div class="h-8 w-px bg-white/10 mx-1 hidden md:block"></div>
 
       <!-- Government Officer Identity Avatar -->
       <div class="hidden md:flex items-center gap-3">
-        <div class="text-right">
-          <div class="font-label-mono text-label-mono text-on-surface text-xs font-semibold">Sh. Rajesh Sharma</div>
-          <div class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">Chairperson, TEC · MoPNG</div>
+        <div class="text-right flex flex-col justify-center">
+          <div class="font-label-mono text-on-surface text-xs font-semibold leading-tight">Sh. Rajesh Sharma</div>
+          <div class="font-label-mono text-on-surface-variant text-[10px] leading-tight mt-0.5">Chairperson, TEC · MoPNG</div>
         </div>
-        <img class="w-8 h-8 rounded object-cover ghost-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS5e5Y3s90h4lmWDUm9USG5mUu9CTo8l-JWezFKJCN5YNC_o_3qbQNm2N4HTzGCMyriJC-I0WPCJjr-uxEmDwE7mclc2thW9ruXwSXGqrK_6uuenegS-EJ5gtpas4UxEX_KNP4zOKQmUyD7oSKWHTiktHQ3lEYRRVqVBrw_ZIgtynZoTxcDrBY5q3WI7GZK5E-jbXQCIu3UhCFJmXY5k491tICFcZdv1893FyeOySoyBOHQ8hEqztpSI5RWUiAqZPU1-S5gxX79EQ" alt="Chairperson Avatar" />
+        <div class="relative flex items-center justify-center">
+          <img class="w-9 h-9 rounded-full object-cover ghost-border ring-1 ring-primary/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS5e5Y3s90h4lmWDUm9USG5mUu9CTo8l-JWezFKJCN5YNC_o_3qbQNm2N4HTzGCMyriJC-I0WPCJjr-uxEmDwE7mclc2thW9ruXwSXGqrK_6uuenegS-EJ5gtpas4UxEX_KNP4zOKQmUyD7oSKWHTiktHQ3lEYRRVqVBrw_ZIgtynZoTxcDrBY5q3WI7GZK5E-jbXQCIu3UhCFJmXY5k491tICFcZdv1893FyeOySoyBOHQ8hEqztpSI5RWUiAqZPU1-S5gxX79EQ" alt="Chairperson Avatar" />
+          <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-[#131314]"></span>
+        </div>
       </div>
     </div>
   </header>
@@ -263,12 +266,13 @@
   <div class="flex flex-1 overflow-hidden relative">
 
     <!-- AUTHENTIC STITCH DOCKED SIDENAVBAR -->
-    <nav id="stitch-sidebar" class="bg-surface-container border-r border-white/10 docked left-0 h-full w-64 hidden lg:flex flex-col fixed left-0 top-16 py-4 z-40">
-      <div class="px-4 pb-3 border-b border-white/10 flex items-center justify-between">
-        <span class="font-label-mono text-[11px] text-on-surface-variant uppercase tracking-wider">Navigation Bridge</span>
+    <nav id="stitch-sidebar" class="bg-surface-container border-r border-white/10 docked left-0 w-64 hidden lg:flex flex-col fixed left-0 top-[74px] bottom-0 h-[calc(100vh-74px)] py-3 z-40">
+      <div class="px-4 pb-2.5 border-b border-white/10 flex items-center justify-between">
+        <span class="font-label-mono text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Navigation Bridge</span>
+        <span class="badge badge-info text-[9px] py-0.5 px-1.5">v2.0</span>
       </div>
 
-      <div class="flex-1 overflow-y-auto mt-3 space-y-1" id="stitch-nav-links">
+      <div class="flex-1 overflow-y-auto mt-2 space-y-1 px-1" id="stitch-nav-links">
         <!-- 1. Command Center HUD (Flagship View) -->
         <a class="stitch-nav-item flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg font-label-mono text-xs cursor-pointer transition-all duration-200" data-view="command-center">
           <span class="material-symbols-outlined text-sm">dashboard</span>
@@ -338,25 +342,25 @@
       </div>
 
       <!-- Quick Hash Audit Button -->
-      <div class="mt-auto px-4 mb-2">
-        <button id="btn-sidebar-audit-quick" class="w-full flex items-center justify-center gap-2 border border-primary text-primary bg-transparent py-2 rounded font-label-mono text-xs hover:bg-primary/10 transition-colors glow-gold cursor-pointer">
+      <div class="mt-auto px-3 pt-2 pb-1.5">
+        <button id="btn-sidebar-audit-quick" class="w-full flex items-center justify-center gap-2 border border-primary/50 text-primary bg-primary/5 hover:bg-primary/15 py-2.5 px-3 rounded-lg font-label-mono text-xs transition-all duration-200 glow-gold cursor-pointer hover-spring">
           <span class="material-symbols-outlined text-sm">lock</span>
-          <span>Audit Hash Ledger</span>
+          <span class="font-semibold">Audit Hash Ledger</span>
         </button>
       </div>
 
       <!-- Engine Status Pill -->
-      <div class="border-t border-white/10 pt-3 px-4 flex items-center justify-between text-[11px] font-label-mono text-on-surface-variant">
+      <div class="border-t border-white/10 pt-2.5 pb-1 px-4 flex items-center justify-between text-[11px] font-label-mono text-on-surface-variant">
         <div class="flex items-center gap-1.5">
-          <span class="status-dot status-dot-active"></span>
+          <span class="status-dot status-dot-active live-beacon"></span>
           <span>FastAPI Engine</span>
         </div>
-        <span class="text-tertiary">ONLINE v0.9.3</span>
+        <span class="text-tertiary font-bold">ONLINE v0.9.3</span>
       </div>
     </nav>
 
     <!-- AUTHENTIC STITCH MAIN CANVAS -->
-    <main class="flex-1 lg:ml-64 p-margin-desktop overflow-y-auto h-[calc(100vh-64px)] scroll-smooth bg-surface relative z-10">
+    <main class="flex-1 lg:ml-64 p-6 lg:p-8 overflow-y-auto h-[calc(100vh-74px)] scroll-smooth bg-surface relative z-10">
       <div id="view-content-mount" class="max-w-[1440px] mx-auto pb-36">
         <!-- Initial Shimmer Card -->
         <div class="card shimmer-bg" style="height: 480px; display: flex; align-items: center; justify-content: center;">
@@ -371,7 +375,11 @@
   </div>
 
   <!-- PERSISTENT FLOATING 'ASK VERITAS' COPILOT TRIGGER -->
-  <button id="btn-floating-copilot" class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-full shadow-2xl font-label-mono text-xs font-bold hover:scale-105 transition-all glow-cyan cursor-pointer">
+  <button id="btn-floating-copilot" class="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-full shadow-2xl font-label-mono text-xs font-bold hover:scale-105 transition-all glow-cyan float-gentle glow-breathe-cyan cursor-pointer">
+    <span class="relative flex h-2.5 w-2.5">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
+    </span>
     <span class="material-symbols-outlined text-base">smart_toy</span>
     <span>Ask Veritas Copilot</span>
   </button>

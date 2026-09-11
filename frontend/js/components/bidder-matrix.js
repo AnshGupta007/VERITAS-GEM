@@ -24,7 +24,7 @@ export function renderBidderMatrix(container) {
     <!-- Top KPI Grid -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
       <!-- KPI 1 -->
-      <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+      <div class="glass-panel ghost-border rounded-lg hover-spring stagger-1" style="padding: 1.25rem; position: relative; border-radius: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
           <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8;">Bidders Evaluated</span>
           <span class="material-symbols-outlined" style="color: var(--accent-gold); font-size: 20px;">group</span>
@@ -36,12 +36,12 @@ export function renderBidderMatrix(container) {
           1 High Risk · 1 Medium · 1 Verified
         </div>
         <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-          <div style="height: 100%; width: 100%; background: var(--accent-gold);"></div>
+          <div class="meter-smooth" style="height: 100%; width: 100%; background: var(--accent-gold);"></div>
         </div>
       </div>
 
       <!-- KPI 2 -->
-      <div class="glass-panel ghost-border rounded-lg glow-red" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+      <div class="glass-panel ghost-border rounded-lg glow-red hover-spring stagger-2 glow-breathe-red" style="padding: 1.25rem; position: relative; border-radius: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
           <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffb4ab;">Material Contradictions</span>
           <span class="material-symbols-outlined" style="color: #ef4444; font-size: 20px;">warning</span>
@@ -53,12 +53,12 @@ export function renderBidderMatrix(container) {
           ₹4.20 Cr turnover variance detected
         </div>
         <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-          <div style="height: 100%; width: 100%; background: #ef4444;"></div>
+          <div class="meter-smooth" style="height: 100%; width: 100%; background: #ef4444;"></div>
         </div>
       </div>
 
       <!-- KPI 3 -->
-      <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+      <div class="glass-panel ghost-border rounded-lg hover-spring stagger-3" style="padding: 1.25rem; position: relative; border-radius: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
           <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #f59e0b;">Temporal Invalidation</span>
           <span class="material-symbols-outlined" style="color: #f59e0b; font-size: 20px;">schedule</span>
@@ -70,12 +70,12 @@ export function renderBidderMatrix(container) {
           Expired BIS license on 15-Sep-2026
         </div>
         <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-          <div style="height: 100%; width: 60%; background: #f59e0b;"></div>
+          <div class="meter-smooth" style="height: 100%; width: 60%; background: #f59e0b;"></div>
         </div>
       </div>
 
       <!-- KPI 4 -->
-      <div class="glass-panel ghost-border rounded-lg glow-emerald" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+      <div class="glass-panel ghost-border rounded-lg glow-emerald hover-spring stagger-4 glow-breathe-emerald" style="padding: 1.25rem; position: relative; border-radius: 8px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
           <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #6ee7b7;">Ledger Integrity</span>
           <span class="material-symbols-outlined" style="color: #10b981; font-size: 20px;">link</span>
@@ -87,7 +87,7 @@ export function renderBidderMatrix(container) {
           SHA-256 block chain verified
         </div>
         <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-          <div style="height: 100%; width: 100%; background: #10b981;"></div>
+          <div class="meter-smooth" style="height: 100%; width: 100%; background: #10b981;"></div>
         </div>
       </div>
     </div>
@@ -95,20 +95,20 @@ export function renderBidderMatrix(container) {
     <!-- Multi-Bidder Comparison Leaderboard Cards -->
     <div style="margin-bottom: var(--spacing-md); display: flex; justify-content: space-between; align-items: center;">
       <h2 style="font-size: 1.35rem;">Bidder Risk & Compliance Leaderboard</h2>
-      <span style="font-size: 0.8rem; color: var(--text-muted);">Ranked dynamically by composite risk matrix</span>
+      <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Ranked dynamically by composite risk matrix</span>
     </div>
 
     <div class="bidders-grid">
       ${bidders
-        .map((b) => {
+        .map((b, idx) => {
           const isSelected = selectedBidder ? b.id === selectedBidder.id : false;
           const cardTypeClass =
-            b.risk_category === 'HIGH' ? 'bidder-card-high' : b.risk_category === 'MEDIUM' ? 'bidder-card-med' : 'bidder-card-low';
+            b.risk_category === 'HIGH' ? 'bidder-card-high glow-breathe-red' : b.risk_category === 'MEDIUM' ? 'bidder-card-med' : 'bidder-card-low glow-breathe-emerald';
 
           return `
-        <div class="bidder-card ${cardTypeClass} card-clickable ${isSelected ? 'selected-bidder-card' : ''}" 
+        <div class="bidder-card ${cardTypeClass} card-clickable hover-spring stagger-${(idx % 4) + 1} ${isSelected ? 'selected-bidder-card' : ''}" 
              data-bidder-id="${b.id}"
-             style="${isSelected ? 'border-color: var(--accent-cyan); box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);' : ''}">
+             style="${isSelected ? 'border-color: var(--accent-cyan); box-shadow: 0 0 24px rgba(0, 242, 254, 0.3);' : ''}">
           
           <div>
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
@@ -273,10 +273,10 @@ export function renderBidderMatrix(container) {
 
       <div style="display: flex; flex-direction: column; gap: 0.75rem;">
         ${findings
-          .map((f) => {
+          .map((f, idx) => {
             const isHigh = f.severity === 'HIGH';
             return `
-          <div class="card" style="padding: 1rem var(--spacing-lg); background: ${isHigh ? 'rgba(239, 68, 68, 0.05)' : 'rgba(13, 21, 39, 0.6)'}; border-color: ${isHigh ? 'rgba(239, 68, 68, 0.3)' : 'var(--surface-border)'};">
+          <div class="card hover-spring stagger-${(idx % 4) + 1}" style="padding: 1rem var(--spacing-lg); background: ${isHigh ? 'rgba(239, 68, 68, 0.05)' : 'rgba(13, 21, 39, 0.6)'}; border-color: ${isHigh ? 'rgba(239, 68, 68, 0.3)' : 'var(--surface-border)'};">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-md);">
               <div style="display: flex; align-items: center; gap: 0.75rem; max-width: 800px;">
                 <span class="badge ${getRiskBadgeClass(f.severity)}">${f.severity}</span>

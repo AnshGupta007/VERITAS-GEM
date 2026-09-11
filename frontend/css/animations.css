@@ -1,7 +1,176 @@
 /* ==========================================================================
-   VERITAS-GEM Micro-Animations & Dynamic Feedback
+   VERITAS-GEM High-Tier Motion System & Micro-Interactions
+   Nano-Banana Fluid Physics, Spring Curves & Forensic Telemetry
    ========================================================================== */
 
+:root {
+  /* Nano-Banana Fluid Spring Curves & Easings */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-spring-soft: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-decel: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Core Keyframes
+   ========================================================================== */
+
+/* 1. Radar Sonar 360-Degree Sweep */
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 2. Sonar Circular Wave Expansion */
+@keyframes sonarWave {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* 3. Radar Node / Forensic Blip Pulse */
+@keyframes radarBlip {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8));
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    filter: drop-shadow(0 0 16px rgba(239, 68, 68, 1));
+    opacity: 0.85;
+  }
+}
+
+@keyframes radarBlipCyan {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(0, 241, 254, 0.8));
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    filter: drop-shadow(0 0 16px rgba(0, 241, 254, 1));
+    opacity: 0.85;
+  }
+}
+
+/* 4. Ambient Floating Dynamics */
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* 5. Smooth View & Card Stagger Reveal */
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 6. Subtle Breathing Glows */
+@keyframes breatheCyan {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(0, 241, 254, 0.25), 0 0 1px rgba(0, 241, 254, 0.4);
+    border-color: rgba(0, 241, 254, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(0, 241, 254, 0.5), 0 0 2px rgba(0, 241, 254, 0.8);
+    border-color: rgba(0, 241, 254, 0.65);
+  }
+}
+
+@keyframes breatheGold {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(242, 202, 80, 0.25);
+    border-color: rgba(242, 202, 80, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(242, 202, 80, 0.5);
+    border-color: rgba(242, 202, 80, 0.7);
+  }
+}
+
+@keyframes breatheRed {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+    border-color: rgba(239, 68, 68, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(239, 68, 68, 0.55);
+    border-color: rgba(239, 68, 68, 0.7);
+  }
+}
+
+@keyframes breatheEmerald {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+    border-color: rgba(16, 185, 129, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(16, 185, 129, 0.5);
+    border-color: rgba(16, 185, 129, 0.7);
+  }
+}
+
+/* 7. Live Indicator Ping */
+@keyframes livePing {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  80%, 100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* 8. Energy Flow Stream (Border line highlight) */
+@keyframes energyFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 9. Holographic Border Shimmer */
+@keyframes borderShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 10. Existing Compatibility Keyframes */
 @keyframes pulse-danger {
   0% {
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
@@ -26,7 +195,7 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -59,6 +228,144 @@
   }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ==========================================================================
+   Motion Utility Classes
+   ========================================================================== */
+
+/* Tactile Interactive Micro-Haptic Click */
+.btn:active, .tactile-press:active {
+  transform: scale(0.97) !important;
+  transition: transform 75ms ease-out !important;
+}
+
+/* Smooth Spring Lift for Cards */
+.hover-spring {
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo) !important;
+}
+.hover-spring:hover {
+  transform: translateY(-3px) scale(1.006) !important;
+}
+
+/* Staggered Entrance Micro-Animations */
+.stagger-1 { animation: cardReveal 0.45s var(--ease-out-expo) 0.04s both; }
+.stagger-2 { animation: cardReveal 0.45s var(--ease-out-expo) 0.09s both; }
+.stagger-3 { animation: cardReveal 0.45s var(--ease-out-expo) 0.14s both; }
+.stagger-4 { animation: cardReveal 0.45s var(--ease-out-expo) 0.19s both; }
+.stagger-5 { animation: cardReveal 0.45s var(--ease-out-expo) 0.24s both; }
+.stagger-6 { animation: cardReveal 0.45s var(--ease-out-expo) 0.29s both; }
+
+/* Floating Element Dynamics (Floating Copilot Trigger) */
+.float-gentle {
+  animation: ambientFloat 3.8s ease-in-out infinite;
+}
+
+/* Active Breathing Aura Classes */
+.glow-breathe-cyan {
+  animation: breatheCyan 3.2s ease-in-out infinite alternate;
+}
+.glow-breathe-gold {
+  animation: breatheGold 3.2s ease-in-out infinite alternate;
+}
+.glow-breathe-red {
+  animation: breatheRed 2.8s ease-in-out infinite alternate;
+}
+.glow-breathe-emerald {
+  animation: breatheEmerald 3.2s ease-in-out infinite alternate;
+}
+
+/* Live Ping Beacon */
+.live-beacon {
+  position: relative;
+  display: inline-flex;
+}
+.live-beacon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  animation: livePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Radar Visual Elements */
+.radar-dish-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: radial-gradient(circle at center, rgba(13, 21, 39, 0.95) 0%, rgba(7, 11, 20, 0.98) 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 241, 254, 0.25);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 241, 254, 0.12);
+}
+
+.radar-sweep-beam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  margin-top: -140px;
+  margin-left: -140px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg at 50% 50%, rgba(0, 241, 254, 0.4) 0deg, rgba(0, 241, 254, 0.08) 35deg, transparent 70deg);
+  animation: radarSweep 4s linear infinite;
+  pointer-events: none;
+}
+
+.radar-sweep-beam-danger {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  margin-top: -140px;
+  margin-left: -140px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg at 50% 50%, rgba(239, 68, 68, 0.45) 0deg, rgba(239, 68, 68, 0.1) 40deg, transparent 75deg);
+  animation: radarSweep 3.5s linear infinite;
+  pointer-events: none;
+}
+
+.radar-sonar-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 241, 254, 0.18);
+  pointer-events: none;
+}
+
+.radar-grid-axis {
+  position: absolute;
+  background: rgba(0, 241, 254, 0.12);
+  pointer-events: none;
+}
+
+.radar-blip-node {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s var(--ease-spring);
+}
+.radar-blip-node:hover {
+  transform: translate(-50%, -50%) scale(1.6);
+}
+
 .scan-animation {
   position: relative;
   overflow: hidden;
@@ -70,8 +377,8 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-  box-shadow: 0 0 8px var(--accent-cyan);
+  background: linear-gradient(90deg, transparent, var(--accent-cyan, #00f2fe), transparent);
+  box-shadow: 0 0 8px var(--accent-cyan, #00f2fe);
   animation: scan-line 2.5s ease-in-out infinite;
   pointer-events: none;
 }
@@ -80,14 +387,13 @@
   animation: pulse-danger 2s infinite;
 }
 
-/* Shimmer Placeholder Effect */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
 .shimmer-bg {
   background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
+}
+
+/* Interactive Progress Meter Transitions */
+.meter-smooth {
+  transition: width 0.9s var(--ease-out-expo);
 }

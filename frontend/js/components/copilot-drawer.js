@@ -17,7 +17,7 @@ export function initCopilotDrawer() {
     <button id="copilot-floating-btn" style="display: none;"></button>
 
     <!-- Slide-Out Chat Drawer -->
-    <div id="copilot-drawer" class="glass-panel ghost-border" style="position: fixed; top: 0; right: -480px; width: 460px; height: 100vh; z-index: 1000; display: flex; flex-direction: column; background: rgba(13, 16, 24, 0.96); backdrop-filter: blur(28px); border-left: 1px solid rgba(0, 241, 254, 0.25); box-shadow: -20px 0 45px rgba(0,0,0,0.8); transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+    <div id="copilot-drawer" class="glass-panel ghost-border" style="position: fixed; top: 0; right: -480px; width: 460px; height: 100vh; z-index: 1000; display: flex; flex-direction: column; background: rgba(13, 16, 24, 0.97); backdrop-filter: blur(28px); border-left: 1px solid rgba(0, 241, 254, 0.3); box-shadow: -25px 0 50px rgba(0,0,0,0.85); transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1), box-shadow 0.4s ease;">
       <!-- Drawer Header -->
       <div style="padding: 1.1rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.45);">
         <div style="display: flex; align-items: center; gap: 0.6rem;">
@@ -227,15 +227,22 @@ export function initCopilotDrawer() {
   async function handleUserQuery(question) {
     // 1. Add User Message
     const userMsg = document.createElement('div');
-    userMsg.style.cssText = 'align-self: flex-end; background: rgba(0, 241, 254, 0.15); border: 1px solid rgba(0, 241, 254, 0.35); border-radius: 8px; padding: 0.75rem 1rem; color: #fff; font-size: 0.82rem; max-width: 85%;';
+    userMsg.style.cssText = 'align-self: flex-end; background: rgba(0, 241, 254, 0.15); border: 1px solid rgba(0, 241, 254, 0.35); border-radius: 8px; padding: 0.75rem 1rem; color: #fff; font-size: 0.82rem; max-width: 85%; animation: cardReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;';
     userMsg.textContent = question;
     chatMessages.appendChild(userMsg);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     // 2. Add Thinking Placeholder
     const botMsg = document.createElement('div');
-    botMsg.style.cssText = 'background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; font-size: 0.82rem; line-height: 1.5; color: #cbd5e1;';
-    botMsg.innerHTML = `<span class="status-dot status-dot-active" style="margin-right: 6px;"></span> Consulting live tender context & Groq reasoning core...`;
+    botMsg.style.cssText = 'background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; font-size: 0.82rem; line-height: 1.5; color: #cbd5e1; animation: cardReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;';
+    botMsg.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="status-dot status-dot-active live-beacon"></span>
+        <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan);">Consulting live tender context & Groq reasoning core...</span>
+      </div>
+      <div class="shimmer-bg" style="height: 10px; border-radius: 4px; margin-top: 10px; width: 90%;"></div>
+      <div class="shimmer-bg" style="height: 10px; border-radius: 4px; margin-top: 6px; width: 65%;"></div>
+    `;
     chatMessages.appendChild(botMsg);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 

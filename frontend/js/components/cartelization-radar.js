@@ -44,9 +44,10 @@ export function renderCartelizationRadar(container) {
         <!-- Top Metric Bar -->
         <div style="display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
           <!-- Metric 1 -->
-          <div class="glass-panel ghost-border rounded-lg glow-red" style="padding: 1.25rem; border-color: rgba(239, 68, 68, 0.4);">
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #fca5a5; margin-bottom: 0.5rem;">
-              Composite Collusion Risk Index
+          <div class="glass-panel ghost-border rounded-lg glow-red hover-spring stagger-1 glow-breathe-red" style="padding: 1.25rem; border-color: rgba(239, 68, 68, 0.4);">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #fca5a5; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+              <span>Composite Collusion Risk Index</span>
+              <span class="status-dot status-dot-danger live-beacon"></span>
             </div>
             <div style="display: flex; align-items: baseline; gap: 0.5rem;">
               <span id="cartel-risk-score" style="font-family: 'Geist', var(--font-display); font-size: 2.25rem; font-weight: 800; color: #ffb4ab;" class="tabular-nums">
@@ -57,10 +58,13 @@ export function renderCartelizationRadar(container) {
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">
               Target Pair: ABC Industries ↔ XYZ Corp
             </div>
+            <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 0.75rem; overflow: hidden;">
+              <div class="meter-smooth" style="height: 100%; width: 81.5%; background: #ef4444;"></div>
+            </div>
           </div>
 
           <!-- Metric 2 -->
-          <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem;">
+          <div class="glass-panel ghost-border rounded-lg hover-spring stagger-2" style="padding: 1.25rem;">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.5rem;">
               Document Creation Delta
             </div>
@@ -70,10 +74,13 @@ export function renderCartelizationRadar(container) {
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #f59e0b; margin-top: 0.5rem;">
               Extreme temporal clustering
             </div>
+            <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 0.75rem; overflow: hidden;">
+              <div class="meter-smooth" style="height: 100%; width: 95%; background: #f59e0b;"></div>
+            </div>
           </div>
 
           <!-- Metric 3 -->
-          <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem;">
+          <div class="glass-panel ghost-border rounded-lg hover-spring stagger-3" style="padding: 1.25rem;">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.5rem;">
               Text Plagiarism Ratio
             </div>
@@ -83,10 +90,13 @@ export function renderCartelizationRadar(container) {
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #ef4444; margin-top: 0.5rem;">
               1,420 verbatim shared characters
             </div>
+            <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 0.75rem; overflow: hidden;">
+              <div class="meter-smooth" style="height: 100%; width: 94.2%; background: #ef4444;"></div>
+            </div>
           </div>
 
           <!-- Metric 4 -->
-          <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem;">
+          <div class="glass-panel ghost-border rounded-lg hover-spring stagger-4" style="padding: 1.25rem;">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.5rem;">
               Network IP Origin
             </div>
@@ -96,11 +106,14 @@ export function renderCartelizationRadar(container) {
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: #ef4444; margin-top: 0.5rem;">
               103.21.124.0/24 (Bandra MIDC)
             </div>
+            <div style="width: 100%; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 0.75rem; overflow: hidden;">
+              <div class="meter-smooth" style="height: 100%; width: 100%; background: #ef4444;"></div>
+            </div>
           </div>
         </div>
 
         <!-- Entity Relationship Network Graph (Interactive SVG Canvas) -->
-        <div class="glass-panel ghost-border rounded-lg" style="padding: 1.5rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;">
+        <div class="glass-panel ghost-border rounded-lg hover-spring" style="padding: 1.5rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <span class="material-symbols-outlined" style="color: var(--accent-gold);">hub</span>
@@ -141,23 +154,39 @@ export function renderCartelizationRadar(container) {
                 </filter>
               </defs>
 
-              <!-- Connection Lines -->
+              <!-- Connection Lines with Animated Pulses -->
               <!-- ABC to VK -->
-              <line x1="220" y1="90" x2="380" y2="90" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,4" />
+              <line x1="220" y1="90" x2="380" y2="90" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4">
+                <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+              </line>
               <!-- XYZ to VK -->
-              <line x1="540" y1="90" x2="380" y2="90" stroke="#ef4444" stroke-width="2.5" />
+              <line x1="540" y1="90" x2="380" y2="90" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4">
+                <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+              </line>
               <!-- ABC to CA -->
-              <line x1="220" y1="90" x2="380" y2="180" stroke="#f59e0b" stroke-width="2" />
+              <line x1="220" y1="90" x2="380" y2="180" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4">
+                <animate attributeName="stroke-dashoffset" values="18;0" dur="1.5s" repeatCount="indefinite" />
+              </line>
               <!-- XYZ to CA -->
-              <line x1="540" y1="90" x2="380" y2="180" stroke="#f59e0b" stroke-width="2" />
+              <line x1="540" y1="90" x2="380" y2="180" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5,4">
+                <animate attributeName="stroke-dashoffset" values="18;0" dur="1.5s" repeatCount="indefinite" />
+              </line>
               <!-- ABC to IP Gateway -->
-              <line x1="220" y1="90" x2="280" y2="260" stroke="#ef4444" stroke-width="2.5" />
+              <line x1="220" y1="90" x2="280" y2="260" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4">
+                <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+              </line>
               <!-- XYZ to IP Gateway -->
-              <line x1="540" y1="90" x2="280" y2="260" stroke="#ef4444" stroke-width="2.5" />
+              <line x1="540" y1="90" x2="280" y2="260" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4">
+                <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+              </line>
               <!-- ABC to Shared Premises -->
-              <line x1="220" y1="90" x2="480" y2="260" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3" />
+              <line x1="220" y1="90" x2="480" y2="260" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3">
+                <animate attributeName="stroke-dashoffset" values="16;0" dur="1.4s" repeatCount="indefinite" />
+              </line>
               <!-- XYZ to Shared Premises -->
-              <line x1="540" y1="90" x2="480" y2="260" stroke="#ef4444" stroke-width="2" />
+              <line x1="540" y1="90" x2="480" y2="260" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,3">
+                <animate attributeName="stroke-dashoffset" values="16;0" dur="1.4s" repeatCount="indefinite" />
+              </line>
 
               <!-- Independent PQR Nodes -->
               <line x1="780" y1="120" x2="780" y2="220" stroke="#10b981" stroke-width="2" />
@@ -171,14 +200,14 @@ export function renderCartelizationRadar(container) {
               <text x="450" y="200" fill="#f87171" font-size="10" font-family="monospace">Shared IP 103.21.124.48</text>
 
               <!-- Node: Bidder ABC -->
-              <g transform="translate(220, 90)">
+              <g transform="translate(220, 90)" class="radar-blip-node" style="cursor: pointer;">
                 <circle r="34" fill="#1e131d" stroke="#ef4444" stroke-width="3" filter="url(#glow-red-filter)" />
                 <text text-anchor="middle" y="4" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">ABC Ind</text>
                 <text text-anchor="middle" y="18" fill="#fca5a5" font-size="9" font-family="monospace">HIGH RISK</text>
               </g>
 
               <!-- Node: Bidder XYZ -->
-              <g transform="translate(540, 90)">
+              <g transform="translate(540, 90)" class="radar-blip-node" style="cursor: pointer;">
                 <circle r="34" fill="#1e131d" stroke="#ef4444" stroke-width="3" filter="url(#glow-red-filter)" />
                 <text text-anchor="middle" y="4" fill="#fff" font-size="11" font-weight="bold" font-family="sans-serif">XYZ Corp</text>
                 <text text-anchor="middle" y="18" fill="#fca5a5" font-size="9" font-family="monospace">COVER BID</text>

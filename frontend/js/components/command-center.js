@@ -55,7 +55,7 @@ export function renderCommandCenter(container) {
       <!-- KPI Overview Grid (Top Row) -->
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
         <!-- KPI 1 -->
-        <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+        <div class="glass-panel ghost-border rounded-lg hover-spring stagger-1" style="padding: 1.25rem; position: relative; border-radius: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
             <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8;">Bidders Evaluated</span>
             <span class="material-symbols-outlined" style="color: var(--accent-gold); font-size: 20px;">group</span>
@@ -67,12 +67,12 @@ export function renderCommandCenter(container) {
             1 High Risk · 1 Medium · 1 Verified
           </div>
           <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-            <div style="height: 100%; width: 100%; background: var(--accent-gold);"></div>
+            <div class="meter-smooth" style="height: 100%; width: 100%; background: var(--accent-gold);"></div>
           </div>
         </div>
 
         <!-- KPI 2 -->
-        <div class="glass-panel ghost-border rounded-lg glow-red" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+        <div class="glass-panel ghost-border rounded-lg glow-red hover-spring glow-breathe-red stagger-2" style="padding: 1.25rem; position: relative; border-radius: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
             <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #ffb4ab;">Material Contradictions</span>
             <span class="material-symbols-outlined" style="color: #ef4444; font-size: 20px;">warning</span>
@@ -84,12 +84,12 @@ export function renderCommandCenter(container) {
             ₹4.20 Cr turnover variance detected
           </div>
           <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-            <div style="height: 100%; width: 100%; background: #ef4444;"></div>
+            <div class="meter-smooth" style="height: 100%; width: 100%; background: #ef4444;"></div>
           </div>
         </div>
 
         <!-- KPI 3 -->
-        <div class="glass-panel ghost-border rounded-lg" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+        <div class="glass-panel ghost-border rounded-lg hover-spring stagger-3" style="padding: 1.25rem; position: relative; border-radius: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
             <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #f59e0b;">Temporal Invalidation</span>
             <span class="material-symbols-outlined" style="color: #f59e0b; font-size: 20px;">schedule</span>
@@ -101,12 +101,12 @@ export function renderCommandCenter(container) {
             Expired BIS license on 15-Sep-2026
           </div>
           <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-            <div style="height: 100%; width: 60%; background: #f59e0b;"></div>
+            <div class="meter-smooth" style="height: 100%; width: 60%; background: #f59e0b;"></div>
           </div>
         </div>
 
         <!-- KPI 4 -->
-        <div class="glass-panel ghost-border rounded-lg glow-emerald" style="padding: 1.25rem; position: relative; border-radius: 8px;">
+        <div class="glass-panel ghost-border rounded-lg glow-emerald hover-spring glow-breathe-emerald stagger-4" style="padding: 1.25rem; position: relative; border-radius: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
             <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #6ee7b7;">Ledger Integrity</span>
             <span class="material-symbols-outlined" style="color: #10b981; font-size: 20px;">link</span>
@@ -118,19 +118,20 @@ export function renderCommandCenter(container) {
             SHA-256 block chain verified
           </div>
           <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.08);">
-            <div style="height: 100%; width: 100%; background: #10b981;"></div>
+            <div class="meter-smooth" style="height: 100%; width: 100%; background: #10b981;"></div>
           </div>
         </div>
       </div>
 
       <!-- Live Evaluation Queue (Bento Grid) -->
       <div style="margin-bottom: 2rem;">
-        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">
-          Live Bidder Evaluation Queue
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span class="status-dot status-dot-active live-beacon"></span>
+          <span>Live Bidder Evaluation Queue</span>
         </div>
 
         <!-- Bidder 1: ABC Industries (High Risk) -->
-        <div class="glass-panel rounded-lg ghost-border glow-red" style="padding: 1.5rem; margin-bottom: 1.25rem; border-color: rgba(239, 68, 68, 0.4);">
+        <div class="glass-panel rounded-lg ghost-border glow-red hover-spring stagger-2 glow-breathe-red" style="padding: 1.5rem; margin-bottom: 1.25rem; border-color: rgba(239, 68, 68, 0.4);">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
             <div style="display: flex; gap: 1rem; align-items: center;">
               <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.5); display: flex; align-items: center; justify-content: center;">
@@ -173,35 +174,35 @@ export function renderCommandCenter(container) {
               <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #94a3b8; margin-bottom: 0.35rem;">Mandatory Coverage</div>
               <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #fff; font-weight: 700;">100%</div>
               <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                <div style="height: 100%; width: 100%; background: #10b981;"></div>
+                <div class="meter-smooth" style="height: 100%; width: 100%; background: #10b981;"></div>
               </div>
             </div>
             <div style="background: #151824; padding: 0.75rem; text-align: center;">
               <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #94a3b8; margin-bottom: 0.35rem;">Evidence Strength</div>
               <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #fff; font-weight: 700;">91.4%</div>
               <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                <div style="height: 100%; width: 91.4%; background: #10b981;"></div>
+                <div class="meter-smooth" style="height: 100%; width: 91.4%; background: #10b981;"></div>
               </div>
             </div>
             <div style="background: #151824; padding: 0.75rem; text-align: center;">
               <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #94a3b8; margin-bottom: 0.35rem;">Source Verification</div>
               <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #fcd34d; font-weight: 700;">84.0%</div>
               <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                <div style="height: 100%; width: 84%; background: #f59e0b;"></div>
+                <div class="meter-smooth" style="height: 100%; width: 84%; background: #f59e0b;"></div>
               </div>
             </div>
             <div style="background: #151824; padding: 0.75rem; text-align: center;">
               <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #94a3b8; margin-bottom: 0.35rem;">Legal Identity</div>
               <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #ef4444; font-weight: 700;">68.5%</div>
               <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                <div style="height: 100%; width: 68.5%; background: #ef4444;"></div>
+                <div class="meter-smooth" style="height: 100%; width: 68.5%; background: #ef4444;"></div>
               </div>
             </div>
             <div style="background: #151824; padding: 0.75rem; text-align: center;">
               <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #94a3b8; margin-bottom: 0.35rem;">Temporal Validity</div>
               <div style="font-family: var(--font-mono); font-size: 0.95rem; color: #ef4444; font-weight: 700;">54.0%</div>
               <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                <div style="height: 100%; width: 54%; background: #ef4444;"></div>
+                <div class="meter-smooth" style="height: 100%; width: 54%; background: #ef4444;"></div>
               </div>
             </div>
           </div>
@@ -220,7 +221,7 @@ export function renderCommandCenter(container) {
         </div>
 
         <!-- Bidder 2: XYZ Corporation (Medium Risk) -->
-        <div class="glass-panel rounded-lg ghost-border" style="padding: 1.25rem; margin-bottom: 1.25rem; border-color: rgba(245, 158, 11, 0.3);">
+        <div class="glass-panel rounded-lg ghost-border hover-spring stagger-3" style="padding: 1.25rem; margin-bottom: 1.25rem; border-color: rgba(245, 158, 11, 0.3);">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div style="display: flex; gap: 1rem; align-items: center;">
               <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.5); display: flex; align-items: center; justify-content: center;">
@@ -247,7 +248,7 @@ export function renderCommandCenter(container) {
         </div>
 
         <!-- Bidder 3: PQR Engineering (Verified Compliant) -->
-        <div class="glass-panel rounded-lg ghost-border glow-emerald" style="padding: 1.25rem; border-color: rgba(16, 185, 129, 0.35);">
+        <div class="glass-panel rounded-lg ghost-border glow-emerald hover-spring stagger-4 glow-breathe-emerald" style="padding: 1.25rem; border-color: rgba(16, 185, 129, 0.35);">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div style="display: flex; gap: 1rem; align-items: center;">
               <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.5); display: flex; align-items: center; justify-content: center;">
