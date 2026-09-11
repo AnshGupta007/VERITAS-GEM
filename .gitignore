@@ -32,6 +32,11 @@ venv/
 ENV/
 env/
 
+# Environment variables & secrets
+.env
+.env.*
+*.env
+
 # Pytest / Test coverage
 .pytest_cache/
 .coverage

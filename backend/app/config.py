@@ -61,6 +61,10 @@ class Settings(BaseSettings):
     # ── Audit Ledger ──────────────────────────────────────────────
     audit_chain_genesis: str = "GENESIS-000000000000000000000000000000000000"
 
+    # ── AI Reasoning Engine (Groq LPU) ────────────────────────────
+    groq_api_key: Optional[str] = Field(default_factory=lambda: os.environ.get("GROQ_API_KEY") or os.environ.get("VERITAS_GROQ_API_KEY"))
+    groq_model: str = Field(default_factory=lambda: os.environ.get("GROQ_MODEL") or os.environ.get("VERITAS_GROQ_MODEL", "qwen/qwen3.8-27b"))
+
 
 # ── Backward-compatible module-level aliases ─────────────────────
 # These preserve compatibility with existing code that imports from config
@@ -80,6 +84,8 @@ HOST = _settings.host
 PORT = _settings.port
 DEBUG = _settings.debug
 API_V1_PREFIX = _settings.api_v1_prefix
+GROQ_API_KEY = _settings.groq_api_key
+GROQ_MODEL = _settings.groq_model
 
 
 @lru_cache()
