@@ -69,15 +69,15 @@ export const api = {
   getShellRisk: (bidderId) => request(`/forensics/shell-risk/${bidderId}`),
   getShowCauseNotice: (bidderId) => request(`/legal/show-cause/${bidderId}`),
   getCopilotStatus: () => request('/copilot/status'),
-  queryCopilot: (query, apiKey = null, model = null) =>
+  queryCopilot: (query, apiKey = null, model = null, history = []) =>
     request('/copilot/query', {
       method: 'POST',
-      body: JSON.stringify({ query, api_key: apiKey, model }),
+      body: JSON.stringify({ query, api_key: apiKey, model, history }),
     }),
-  askCopilot: (query, apiKey = null, model = null) =>
+  askCopilot: (query, apiKey = null, model = null, history = []) =>
     request('/copilot/query', {
       method: 'POST',
-      body: JSON.stringify({ query, api_key: apiKey, model }),
+      body: JSON.stringify({ query, api_key: apiKey, model, history }),
     }),
   ingestTender: (payload) =>
     request('/tenders/ingest', {

@@ -165,9 +165,10 @@ def query_groq_llm(
     context: Dict[str, Any],
     api_key: str,
     model: str = "qwen/qwen3.8-27b",
-    timeout: float = 12.0
+    timeout: float = 12.0,
+    history: Optional[List[Dict[str, str]]] = None
 ) -> Optional[Dict[str, Any]]:
-    """Calls Groq LPU endpoint with full procurement context."""
+    """Calls Groq LPU endpoint with full procurement context and conversation history."""
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key.strip()}",
@@ -175,9 +176,19 @@ def query_groq_llm(
     }
 
     system_prompt = (
-        "You are VERITAS Copilot, an authoritative AI procurement integrity & compliance advisor for the Ministry of Petroleum & Natural Gas (MoPNG) and Government e-Marketplace (GeM).\n"
-        "You analyze public tenders, bidder eligibility, forensic audit defects, and Indian procurement directives (GFR 2017, CVC guidelines, DPIIT Make-in-India orders, GeM GTC).\n"
-        "Answer the user query accurately, professionally, and authoritatively based on the live procurement context provided.\n"
+        "You are VERITAS Copilot, an authoritative AI procurement integrity advisor for the Ministry of Petroleum & Natural Gas (MoPNG) and Government e-Marketplace (GeM).\n"
+        f"LIVE PROCUREMENT CONTEXT:\n{json.dumps(context, ensure_ascii=False)}\n\n"
+        "RESPONSE GUIDELINES BASED ON USER INTENT:\n"
+        "1. GREETINGS & CASUAL OPENERS (e.g., 'hi', 'hello', 'who are you', 'help'):\n"
+        "   - DO NOT dump the full bidder risk table or repeat previous comprehensive summaries!\n"
+        "   - Greet the Evaluation Committee officer warmly and concisely (under 30 words).\n"
+        "   - Mention 3 specific areas they can probe (e.g. 1. ABC Industries turnover conflict, 2. XYZ local content & BoM deconstruction, 3. Cartelization radar).\n"
+        "   - Set severity: 'INFO', recommended_action: 'Select a bidder or ask a specific question.'\n"
+        "2. SPECIFIC QUESTIONS (e.g., about a specific bidder, clause, or defect):\n"
+        "   - Answer ONLY about the requested entity, defect, or rule. Never dump unrelated bidders.\n"
+        "3. FOLLOW-UPS (e.g., 'any more information', 'elaborate', 'what next'):\n"
+        "   - Check conversation history. Provide NEW, deeper forensic details not yet stated (e.g., MCA director history, forensic PDF font anomalies, CVC circular legal precedents, or drafting next procedural steps).\n"
+        "   - Never repeat what was already stated in previous turns.\n"
         "CRITICAL REQUIREMENT: Keep your answer concise, sharp, and strictly under 140 words so that the full JSON completes well within token limits.\n\n"
         "You MUST respond ONLY with a valid JSON object matching this schema:\n"
         "{\n"
@@ -185,8 +196,7 @@ def query_groq_llm(
         '  "citations": [{"doc": "document name", "page": 1, "clause": "clause ref", "finding_id": "finding id"}],\n'
         '  "severity": "CRITICAL" | "HIGH" | "MEDIUM" | "INFO",\n'
         '  "recommended_action": "clear next procedural step for the Procurement Evaluation Committee Chairperson"\n'
-        "}\n\n"
-        f"LIVE PROCUREMENT STATE:\n{json.dumps(context, ensure_ascii=False)}"
+        "}"
     )
 
     candidate_models = [model] if model else []
@@ -194,14 +204,21 @@ def query_groq_llm(
         if alt not in candidate_models:
             candidate_models.append(alt)
 
+    # Prepare chat message thread
+    thread_messages: List[Dict[str, str]] = [{"role": "system", "content": system_prompt}]
+    if history:
+        for h in history[-4:]:
+            role = h.get("role", "user")
+            content = h.get("content", "")
+            if role in ("user", "assistant") and content:
+                thread_messages.append({"role": role, "content": content[:250]})
+    thread_messages.append({"role": "user", "content": question})
+
     for active_model in candidate_models:
         for use_json_format in [True, False]:
             payload: Dict[str, Any] = {
                 "model": active_model,
-                "messages": [
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": question}
-                ],
+                "messages": thread_messages,
                 "temperature": 0.15,
                 "max_tokens": 360
             }
@@ -263,7 +280,8 @@ def query_copilot(
     question: str,
     data_manager: Optional[Any] = None,
     api_key: Optional[str] = None,
-    model: Optional[str] = None
+    model: Optional[str] = None,
+    history: Optional[List[Dict[str, str]]] = None
 ) -> Dict[str, Any]:
     """
     Evaluates natural language user question using either Groq LPU LLM
@@ -290,7 +308,13 @@ def query_copilot(
 
     if resolved_key:
         context = build_procurement_context(dm)
-        groq_result = query_groq_llm(question, context, api_key=resolved_key, model=resolved_model)
+        groq_result = query_groq_llm(
+            question,
+            context,
+            api_key=resolved_key,
+            model=resolved_model,
+            history=history
+        )
         if groq_result and groq_result.get("answer"):
             return groq_result
 
@@ -306,6 +330,24 @@ def _deterministic_query_copilot(question: str, dm: Any) -> Dict[str, Any]:
     all_findings = dm.findings if dm else []
 
     normalized = question.lower().strip()
+
+    # Check for greetings
+    if normalized in ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "help", "who are you"]:
+        return {
+            "query": question,
+            "found": True,
+            "answer": (
+                "**Greetings, Committee Chairperson.** I am VERITAS Copilot, your AI procurement integrity advisor.\n\n"
+                "I can analyze the active tender and bidders for you:\n"
+                "• **ABC Industries**: Review the ₹4.20 Cr turnover conflict & expired BIS certification\n"
+                "• **XYZ Corporation**: Inspect the 48.0% vs 62.4% local content discrepancy & BoM\n"
+                "• **PQR Engineering**: Verify L1 compliance scorecard & valid ICAI UDINs\n"
+                "• **Collusion Radar**: Detect cartel subnets, shared personnel, and timestamps"
+            ),
+            "citations": [],
+            "severity": "INFO",
+            "recommended_action": "Select a bidder or ask a specific question to proceed."
+        }
 
     # ── 1. Check for specific deep forensic questions first ──────────────────
     # Check for Cartelization / Collusion

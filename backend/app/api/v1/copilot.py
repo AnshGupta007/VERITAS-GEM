@@ -1,5 +1,5 @@
 """Ask Veritas AI Copilot conversational forensic assistant endpoints."""
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, Depends, Header
 from pydantic import BaseModel
 
@@ -14,6 +14,7 @@ class CopilotQueryRequest(BaseModel):
     query: str
     api_key: Optional[str] = None
     model: Optional[str] = None
+    history: Optional[List[Dict[str, str]]] = None
 
 
 @router.get("/copilot/status")
@@ -55,4 +56,5 @@ def post_copilot_query(
         data_manager=data_manager,
         api_key=effective_key,
         model=effective_model,
+        history=payload.history,
     )

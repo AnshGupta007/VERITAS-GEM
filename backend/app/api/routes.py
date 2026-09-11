@@ -299,6 +299,9 @@ from pydantic import BaseModel
 
 class CopilotQueryRequest(BaseModel):
     query: str
+    api_key: Optional[str] = None
+    model: Optional[str] = None
+    history: Optional[List[Dict[str, str]]] = None
 
 class TenderIngestRequest(BaseModel):
     file_name: str
@@ -358,7 +361,12 @@ def get_show_cause_notice(bidder_id: str) -> Dict[str, Any]:
 @router.post("/copilot/query")
 def post_copilot_query(payload: CopilotQueryRequest) -> Dict[str, Any]:
     """'Ask Veritas' conversational forensic assistant query endpoint."""
-    return query_copilot(payload.query)
+    return query_copilot(
+        payload.query,
+        api_key=payload.api_key,
+        model=payload.model,
+        history=payload.history,
+    )
 
 
 @router.post("/tenders/ingest")

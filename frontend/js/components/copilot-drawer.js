@@ -40,6 +40,9 @@ export function initCopilotDrawer() {
         </div>
 
         <div style="display: flex; align-items: center; gap: 0.4rem;">
+          <button id="copilot-clear-chat-btn" title="Clear Chat Thread & Reset Memory" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);">
+            <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle;">refresh</span>
+          </button>
           <button id="copilot-settings-toggle" title="Configure Groq API Key & Model" class="btn btn-secondary btn-sm" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);">
             <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle;">settings</span>
           </button>
@@ -180,6 +183,26 @@ export function initCopilotDrawer() {
     else openDrawer();
   };
 
+  const clearBtn = root.querySelector('#copilot-clear-chat-btn');
+  let conversationHistory = [];
+
+  clearBtn?.addEventListener('click', () => {
+    conversationHistory = [];
+    chatMessages.innerHTML = `
+      <div class="copilot-msg-bot" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; font-size: 0.82rem; line-height: 1.5; color: #cbd5e1;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span class="badge badge-info" style="font-size: 0.65rem;">VERITAS AI</span>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #94a3b8;">⚡ Thread Reset</span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 0.65rem; color: #64748b;">SIH26100</span>
+        </div>
+        Greetings, Committee Chairperson. Conversation history has been reset. What would you like to examine next?
+      </div>
+    `;
+    showToast('Copilot conversation reset.', 'info');
+  });
+
   floatBtn?.addEventListener('click', toggleDrawer);
   document.getElementById('btn-floating-copilot')?.addEventListener('click', toggleDrawer);
   closeBtn?.addEventListener('click', closeDrawer);
@@ -219,7 +242,14 @@ export function initCopilotDrawer() {
     try {
       const clientKey = localStorage.getItem('veritas_groq_api_key') || null;
       const clientModel = localStorage.getItem('veritas_groq_model') || null;
-      const res = await api.askCopilot(question, clientKey, clientModel);
+      const res = await api.askCopilot(question, clientKey, clientModel, conversationHistory);
+      if (res && res.answer) {
+        conversationHistory.push({ role: 'user', content: question });
+        conversationHistory.push({ role: 'assistant', content: res.answer });
+        if (conversationHistory.length > 8) {
+          conversationHistory = conversationHistory.slice(-8);
+        }
+      }
 
       // Escape HTML to prevent XSS before parsing markdown
       const escapeHTML = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
