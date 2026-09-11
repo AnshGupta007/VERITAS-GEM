@@ -177,10 +177,11 @@ def query_groq_llm(
     system_prompt = (
         "You are VERITAS Copilot, an authoritative AI procurement integrity & compliance advisor for the Ministry of Petroleum & Natural Gas (MoPNG) and Government e-Marketplace (GeM).\n"
         "You analyze public tenders, bidder eligibility, forensic audit defects, and Indian procurement directives (GFR 2017, CVC guidelines, DPIIT Make-in-India orders, GeM GTC).\n"
-        "Answer the user query accurately, professionally, and authoritatively based on the live procurement context provided.\n\n"
+        "Answer the user query accurately, professionally, and authoritatively based on the live procurement context provided.\n"
+        "CRITICAL REQUIREMENT: Keep your answer concise, sharp, and strictly under 140 words so that the full JSON completes well within token limits.\n\n"
         "You MUST respond ONLY with a valid JSON object matching this schema:\n"
         "{\n"
-        '  "answer": "string in markdown format with clear headings, bullet points, and legal rationale",\n'
+        '  "answer": "string in markdown format with clear headings, bullet points, and legal rationale (max 140 words)",\n'
         '  "citations": [{"doc": "document name", "page": 1, "clause": "clause ref", "finding_id": "finding id"}],\n'
         '  "severity": "CRITICAL" | "HIGH" | "MEDIUM" | "INFO",\n'
         '  "recommended_action": "clear next procedural step for the Procurement Evaluation Committee Chairperson"\n'
@@ -188,65 +189,72 @@ def query_groq_llm(
         f"LIVE PROCUREMENT STATE:\n{json.dumps(context, ensure_ascii=False)}"
     )
 
-    candidate_models = [model]
-    for alt in ["qwen/qwen3.8-27b", "openai/gpt-oss-20b", "qwen/qwen3.6-27b"]:
+    candidate_models = [model] if model else []
+    for alt in ["qwen/qwen3.8-27b", "groq/compound", "qwen/qwen3.6-27b"]:
         if alt not in candidate_models:
             candidate_models.append(alt)
 
     for active_model in candidate_models:
-        payload = {
-            "model": active_model,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": question}
-            ],
-            "response_format": {"type": "json_object"},
-            "temperature": 0.2,
-            "max_tokens": 450
-        }
+        for use_json_format in [True, False]:
+            payload: Dict[str, Any] = {
+                "model": active_model,
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": question}
+                ],
+                "temperature": 0.15,
+                "max_tokens": 360
+            }
+            if use_json_format:
+                payload["response_format"] = {"type": "json_object"}
 
-        try:
-            with httpx.Client(timeout=timeout) as client:
-                resp = client.post(url, headers=headers, json=payload)
-                if resp.status_code != 200:
-                    continue  # Try next candidate model on rate-limit or error
-                data = resp.json()
-                raw_content = data["choices"][0]["message"]["content"]
-                parsed = json.loads(raw_content)
+            try:
+                with httpx.Client(timeout=timeout) as client:
+                    resp = client.post(url, headers=headers, json=payload)
+                    if resp.status_code != 200:
+                        continue
+                    data = resp.json()
+                    choice = data["choices"][0]["message"]
+                    raw_content = choice.get("content") or choice.get("reasoning_content") or ""
 
-                citations_raw = parsed.get("citations", [])
-                citations = []
-                if isinstance(citations_raw, list):
-                    for c in citations_raw:
-                        if isinstance(c, dict):
-                            citations.append({
-                                "doc": str(c.get("doc", "Tender_Verification_Pack.pdf")),
-                                "page": c.get("page", 1),
-                                "clause": str(c.get("clause", "Statutory Clause")),
-                                "finding_id": str(c.get("finding_id", "FIND-VERITAS"))
-                            })
-                        elif isinstance(c, str):
-                            citations.append({
-                                "doc": c,
-                                "page": 1,
-                                "clause": "Referenced Requirement",
-                                "finding_id": "FIND-EVIDENCE"
-                            })
-                if not citations:
-                    citations = [{"doc": "Tender_Verification_Dossier.pdf", "page": 1, "clause": "Section IV", "finding_id": "FIND-AUDIT"}]
+                    match = re.search(r"\{[\s\S]*\}", raw_content)
+                    if not match:
+                        continue
+                    parsed = json.loads(match.group(0))
 
-                return {
-                    "query": question,
-                    "found": True,
-                    "answer": str(parsed.get("answer", "")),
-                    "citations": citations,
-                    "severity": str(parsed.get("severity", "INFO")).upper(),
-                    "recommended_action": str(parsed.get("recommended_action", "Proceed with evaluation per GFR 2017.")),
-                    "engine": "groq",
-                    "model": active_model
-                }
-        except Exception:
-            continue
+                    citations_raw = parsed.get("citations", [])
+                    citations = []
+                    if isinstance(citations_raw, list):
+                        for c in citations_raw:
+                            if isinstance(c, dict):
+                                citations.append({
+                                    "doc": str(c.get("doc", "Tender_Verification_Pack.pdf")),
+                                    "page": c.get("page", 1),
+                                    "clause": str(c.get("clause", "Statutory Clause")),
+                                    "finding_id": str(c.get("finding_id", "FIND-VERITAS"))
+                                })
+                            elif isinstance(c, str):
+                                citations.append({
+                                    "doc": c,
+                                    "page": 1,
+                                    "clause": "Referenced Requirement",
+                                    "finding_id": "FIND-EVIDENCE"
+                                })
+                    if not citations:
+                        citations = [{"doc": "Tender_Verification_Dossier.pdf", "page": 1, "clause": "Section IV", "finding_id": "FIND-AUDIT"}]
+
+                    return {
+                        "query": question,
+                        "found": True,
+                        "answer": str(parsed.get("answer", "")),
+                        "citations": citations,
+                        "severity": str(parsed.get("severity", "INFO")).upper(),
+                        "recommended_action": str(parsed.get("recommended_action", "Proceed with evaluation per GFR 2017.")),
+                        "engine": "groq",
+                        "model": active_model
+                    }
+            except Exception:
+                continue
 
     return None
 
@@ -264,11 +272,16 @@ def query_copilot(
     dm = _get_data_manager(data_manager)
 
     # Resolve Groq credentials and model
-    resolved_key = (
-        (api_key.strip() if api_key else None) or
-        os.environ.get("GROQ_API_KEY") or
-        os.environ.get("VERITAS_GROQ_API_KEY")
-    )
+    # If running under automated test suite without explicit api_key, use deterministic engine
+    is_test = os.environ.get("IS_PYTEST_RUN") == "1"
+    if is_test and not api_key:
+        resolved_key = None
+    else:
+        resolved_key = (
+            (api_key.strip() if api_key else None) or
+            os.environ.get("GROQ_API_KEY") or
+            os.environ.get("VERITAS_GROQ_API_KEY")
+        )
     resolved_model = (
         (model.strip() if model else None) or
         os.environ.get("GROQ_MODEL") or

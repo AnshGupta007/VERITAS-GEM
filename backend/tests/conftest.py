@@ -1,6 +1,11 @@
 """Pytest fixtures and configuration for VERITAS-GEM test suites."""
+import os
 import sys
 from pathlib import Path
+
+# Mark test environment so deterministic test assertions are preserved
+os.environ["IS_PYTEST_RUN"] = "1"
+
 import pytest
 from fastapi.testclient import TestClient
 

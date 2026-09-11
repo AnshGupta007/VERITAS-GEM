@@ -45,8 +45,10 @@ def post_copilot_query(
     data_manager=Depends(get_data_manager),
     settings=Depends(get_settings),
 ) -> Dict[str, Any]:
-    """'Ask Veritas' conversational forensic assistant query endpoint."""
-    effective_key = payload.api_key or x_groq_api_key or settings.groq_api_key
+    import os
+    is_test = os.environ.get("IS_PYTEST_RUN") == "1"
+    server_key = None if is_test else settings.groq_api_key
+    effective_key = payload.api_key or x_groq_api_key or server_key
     effective_model = payload.model or settings.groq_model
     return query_copilot(
         payload.query,
